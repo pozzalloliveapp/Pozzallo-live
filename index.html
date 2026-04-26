@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pozzallo Live</title>
+  <title>Pozzallo Live - Locali</title>
   <style>
     body {
       margin: 0;
@@ -12,160 +12,59 @@
       color: #1f2937;
     }
 
-    .app {
-      max-width: 420px;
+    .container {
+      max-width: 430px;
       margin: 0 auto;
+      padding: 20px;
       background: white;
       min-height: 100vh;
-      padding: 20px;
       box-sizing: border-box;
     }
 
-    .title {
-      font-size: 28px;
-      font-weight: bold;
-      color: #0f4c81;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #6b7280;
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #2563eb);
+      color: white;
+      padding: 24px;
+      border-radius: 24px;
       margin-bottom: 24px;
     }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 22px 0 12px;
+    h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    h2 {
+      margin: 22px 0 14px;
+      font-size: 20px;
     }
 
     .card {
       background: #f8fafc;
-      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
       padding: 16px;
       margin-bottom: 14px;
-      border: 1px solid #e5e7eb;
       line-height: 1.5;
-    }
-
-    .small-card {
-      padding: 12px;
-    }
-
-    .highlight {
-      font-weight: bold;
-      color: #0f4c81;
-    }
-
-    .bottom-nav {
-      position: sticky;
-      bottom: 0;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
-      display: flex;
-      justify-content: space-around;
-      font-size: 14px;
-      margin-top: 24px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="background:linear-gradient(135deg,#0f172a,#2563eb); color:white; padding:28px; border-radius:24px; margin-bottom:24px; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
-      <h1 style="margin:0; font-size:32px;">Pozzallo Live 📍</h1>
-      <p style="margin:10px 0 16px; font-size:18px; opacity:0.95;">Scopri cosa succede oggi a Pozzallo</p>
-      <div style="display:grid; gap:10px;">
-        <div><strong>🔥 Adesso:</strong> Piazza si sta muovendo</div>
-        <div><strong>🍸 Top aperitivo:</strong> Cantunera</div>
-        <div><strong>🎶 Tonight:</strong> Moka Caffè</div>
-      </div>
+
+    <div class="hero">
+      <h1>Locali 👑</h1>
+      <div class="subtitle">I posti che fanno vivere Pozzallo</div>
     </div>
 
-    <h2>📍 Adesso a Pozzallo</h2>
-
+    <h2>Millesimo 👑</h2>
     <div class="card">
-      <strong>🔴 Moka Caffè — Pienissimo</strong><br>
-      DJ iniziato, tavoli pieni e movimento forte
-    </div>
-
-    <div class="card">
-      <strong>🟠 Millesimo — Molto vivo</strong><br>
-      Il venerdì resta il cuore della serata
-    </div>
-
-    <div class="card">
-      <strong>🟢 Cantunera — Aperitivo vivo</strong><br>
-      Perfetto per iniziare e vedere le partite live
-    </div>
-
-    <div class="card">
-      <strong>🔵 Utti — Tranquillo</strong><br>
-      Relax, apericena e chiacchiere senza fretta
-    </div>
-
-    <h2>👑 Questo Weekend</h2>
-
-    <div class="card">
-      <strong>Giovedì → Moka Caffè</strong><br>
-      DJ, movimento e il classico punto fisso
-    </div>
-
-    <div class="card">
-      <strong>Venerdì → Millesimo</strong><br>
-      Il cuore della serata passa da lì
-    </div>
-
-    <div class="card">
-      <strong>Sabato → Utti + Piazza</strong><br>
-      Si parte tranquilli, poi si gira
-    </div>
-
-    <div class="card">
-      <strong>Domenica → Piazza + Lungomare</strong><br>
-      Aperitivo, passeggiata e relax
-    </div>
-
-    <h2>🏆 Live Ranking</h2>
-
-    <div class="card">
-      <strong>1. Millesimo 👑</strong><br>
-      Friday winner — serata intensa e sempre pieno
-    </div>
-
-    <div class="card">
-      <strong>2. Moka Caffè 🎶</strong><br>
-      Giovedì top — DJ e movimento continuo
-    </div>
-
-    <div class="card">
-      <strong>3. Cantunera 🍸</strong><br>
-      Aperitivo king — sociale e sempre presente
-    </div>
-
-    <h2>🍸 Dove iniziare?</h2>
-
-    <div class="card">
-      <strong>Aperitivo sociale → Cantunera</strong><br>
-      Perfetto per gruppi, coppie e partite live
-    </div>
-
-    <div class="card">
-      <strong>Serata forte → Millesimo</strong><br>
-      Se vuoi entrare subito nel vivo
-    </div>
-
-    <div class="card">
-      <strong>Passeggiata → Piazza + Lungomare</strong><br>
-      Per respirare davvero Pozzallo
-    </div>
-
-    <h2>👑 Profili Locali Premium</h2>
-
-    <div class="card">
-      <strong>Millesimo 👑</strong><br><br>
       ⭐ 4.9<br>
-      📍 Piazza<br>
       🔥 Il cuore del venerdì sera<br>
       🎶 atmosfera intensa, quasi da disco<br>
       👥 gruppi, movimento e piazza piena<br><br>
@@ -173,64 +72,39 @@
       “Se è venerdì, la risposta è Millesimo.”
     </div>
 
+    <h2>Cantunera 🍸</h2>
     <div class="card">
-      <strong>Cantunera 🍸</strong><br><br>
       ⭐ 4.8<br>
-      📍 Punto fisso aperitivo + serata<br>
-      👥 perfetto per coppie e gruppi<br>
-      ⚽ ottimo anche per vedere le partite live<br>
-      🍷 sociale, rilassato ma sempre vivo<br><br>
+      🍷 Aperitivo e serata<br>
+      ⚽ perfetto anche per partite live<br>
+      👥 sociale e sempre presente<br><br>
       <strong>Pozzallo Dice:</strong><br>
       “Se vuoi iniziare bene, parti da Cantunera.”
     </div>
 
-    <h2>🗣 Pozzallo Dice</h2>
-
+    <h2>Moka Caffè 🎶</h2>
     <div class="card">
-      <strong>🔥 Team Cantunera 🍸 vs Team Millesimo 👑</strong><br><br>
-      Se devi scegliere un solo posto per il weekend…<br>
-      chi vince davvero?<br><br>
-      → Aperitivo e sociale = Cantunera<br>
-      → Intensità e venerdì forte = Millesimo
+      ⭐ 4.7<br>
+      🔥 Giovedì fortissimo<br>
+      DJ, movimento e serata viva<br><br>
+      <strong>Pozzallo Dice:</strong><br>
+      “Se è giovedì, si finisce lì.”
     </div>
 
+    <h2>Utti 🌙</h2>
     <div class="card">
-      <strong>🎶 Giovedì si finisce sempre al Moka?</strong><br><br>
-      Pozzallo dice sì.<br>
-      Tu che ne pensi?
+      ⭐ 4.5<br>
+      Relax, apericena e chiacchiere<br>
+      Perfetto per iniziare tranquilli
     </div>
 
+    <h2>Tonno Rosso 🌊</h2>
     <div class="card">
-      <strong>🌊 Domenica migliore?</strong><br><br>
-      Piazza + Lungomare Pietre Nere resta imbattibile?<br>
-      Oppure hai un altro posto fisso?
+      ⭐ 4.4<br>
+      Nel mezzo tra aperitivo e serata<br>
+      Posti fuori, bancone e atmosfera semplice
     </div>
 
-    <h2>🔔 Notifiche Live</h2>
-
-    <div class="card">
-      <strong>🔥 Moka Caffè</strong><br><br>
-      Già pieno dalle 22 — DJ partito e tavoli quasi finiti
-    </div>
-
-    <div class="card">
-      <strong>👀 Piazza</strong><br><br>
-      Si sta riempiendo adesso — movimento forte verso il centro
-    </div>
-
-    <div class="card">
-      <strong>🎶 Evento Live</strong><br><br>
-      Stasera musica e movimento in centro — zona piazza super attiva
-    </div>
-
-    <div class="card">
-      <strong>🌊 Lungomare Pietre Nere</strong><br><br>
-      Passeggiata piena e serata tranquilla fronte mare
-    </div>
-
-    <div style="margin-top:28px; text-align:center; padding:18px; border-radius:18px; background:#f8fafc;">
-      <strong>“Il weekend non si programma. Si vive.” 💙</strong>
-    </div>
   </div>
 </body>
 </html>
