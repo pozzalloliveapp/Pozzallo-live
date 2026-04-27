@@ -454,6 +454,7 @@ a<!DOCTYPE html>
   };
 
   window.votePlace = async function (place) {
+  window.votePlace = async function (place) {
   const snapshot = await getDocs(collection(db, "votes"));
 
   snapshot.forEach(async (item) => {
@@ -492,10 +493,46 @@ a<!DOCTYPE html>
       }
 
       alert("Voto registrato con successo");
+      loadVotes();
     }
   });
 };
 
+async function loadVotes() {
+  const snapshot = await getDocs(collection(db, "votes"));
+
+  snapshot.forEach((item) => {
+    if (item.id === "night_poll") {
+      const data = item.data();
+
+      const millesimo = data.millesimo || 0;
+      const cantunera = data.cantunera || 0;
+      const moka = data.moka || 0;
+      const piazza = data.piazza || 0;
+
+      const total =
+        millesimo +
+        cantunera +
+        moka +
+        piazza;
+
+      if (total === 0) return;
+
+      document.getElementById("millesimoPercent").innerHTML =
+        Math.round((millesimo / total) * 100) + "%";
+
+      document.getElementById("cantuneraPercent").innerHTML =
+        Math.round((cantunera / total) * 100) + "%";
+
+      document.getElementById("mokaPercent").innerHTML =
+        Math.round((moka / total) * 100) + "%";
+
+      document.getElementById("piazzaPercent").innerHTML =
+        Math.round((piazza / total) * 100) + "%";
+    }
+  });
+}
   loadComments();
   loadHype();
+  loadVotes();
 </script>
