@@ -1,0 +1,21 @@
+{
+  "name": "Pozzallo Live",
+  "short_name": "Pozzallo Live",
+  "start_url": "/Pozzallo-live/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
