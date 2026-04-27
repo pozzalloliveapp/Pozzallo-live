@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -176,8 +176,43 @@
 
   <div class="section-title">
     🔥 Dove vai stasera?
+    
+  </div>
+  <div class="card">
+  <div class="question">
+    Quanto hype c'è per stasera?
   </div>
 
+  <div style="text-align:center; margin-top:20px;">
+    <button
+      onclick="addHype()"
+      style="
+        padding:16px 28px;
+        border:none;
+        border-radius:18px;
+        background: linear-gradient(90deg, #7c3aed, #3b82f6);
+        color:white;
+        font-size:16px;
+        font-weight:700;
+        cursor:pointer;
+      "
+    >
+      🔥 Alza l’Hype
+    </button>
+
+    <div
+      id="hypeCount"
+      style="
+        margin-top:18px;
+        font-size:20px;
+        font-weight:800;
+      "
+    >
+      Caricamento hype...
+    </div>
+  </div>
+  </div>
+  
   <div class="card">
     <div class="question">
       Sabato sera — chi vince?
