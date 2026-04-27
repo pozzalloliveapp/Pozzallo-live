@@ -548,6 +548,43 @@ async function loadVotes() {
     }
   });
 }
+  window.setPresence = async function (place) {
+  const snapshot = await getDocs(collection(db, "presence"));
+
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_live") {
+      const ref = doc(db, "presence", item.id);
+      const data = item.data();
+
+      if (place === "Millesimo") {
+        await updateDoc(ref, {
+          millesimo: (data.millesimo || 0) + 1
+        });
+      }
+
+      if (place === "Cantunera") {
+        await updateDoc(ref, {
+          cantunera: (data.cantunera || 0) + 1
+        });
+      }
+
+      if (place === "Moka Caffè") {
+        await updateDoc(ref, {
+          moka: (data.moka || 0) + 1
+        });
+      }
+
+      if (place === "Piazza") {
+        await updateDoc(ref, {
+          piazza: (data.piazza || 0) + 1
+        });
+      }
+
+      alert("Presenza registrata");
+    }
+  });
+};
+  
   loadComments();
   loadHype();
   loadVotes();
