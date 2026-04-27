@@ -6,64 +6,124 @@
   <title>Pozzallo Live</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #1f2937;
     }
 
-    .container {
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 20px;
-      background: white;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 100px;
+    body {
+      background: #050816;
+      color: white;
     }
 
     .hero {
-      background: linear-gradient(135deg, #0f172a, #2563eb);
-      color: white;
-      padding: 28px;
-      border-radius: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      min-height: 100vh;
+      padding: 30px 20px 120px;
+      background:
+        linear-gradient(
+          rgba(5, 8, 22, 0.70),
+          rgba(5, 8, 22, 0.88)
+        ),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 32px;
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #3b82f6;
+    }
+
+    .location {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .main-title {
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .main-title span {
+      color: #3b82f6;
+      display: block;
     }
 
     .subtitle {
-      margin-top: 10px;
-      font-size: 16px;
+      font-size: 20px;
+      line-height: 1.5;
+      max-width: 500px;
+      margin-bottom: 35px;
       opacity: 0.95;
     }
 
-    h2 {
-      margin: 24px 0 14px;
-      font-size: 20px;
+    .cta {
+      display: inline-block;
+      background: #2563eb;
+      padding: 16px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.35);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
     }
 
     .card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 14px;
-      line-height: 1.5;
+      padding: 20px;
+      backdrop-filter: blur(8px);
     }
 
-    .quote {
-      margin-top: 28px;
-      text-align: center;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f8fafc;
-      font-weight: bold;
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.92;
+    }
+
+    .quote-box {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 24px;
+      line-height: 1.7;
+      font-size: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .quote-box strong {
+      color: #3b82f6;
     }
 
     .bottom-nav {
@@ -71,103 +131,95 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
+      background: rgba(5, 8, 22, 0.96);
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-around;
-      font-size: 14px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+      padding: 18px 0;
+      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
+      color: white;
       text-decoration: none;
-      color: #1f2937;
+      font-size: 14px;
       font-weight: 600;
+      opacity: 0.85;
     }
 
-    .active {
-      color: #2563eb;
+    .bottom-nav a.active {
+      color: #3b82f6;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <section class="hero">
 
-    <div class="hero">
-      <h1>Pozzallo Live 📍</h1>
-      <div class="subtitle">
-        Scopri cosa succede oggi a Pozzallo
+    <div class="top-bar">
+      <div class="logo">POZZALLO <span>LIVE</span></div>
+      <div class="location">📍 Pozzallo, Sicilia</div>
+    </div>
+
+    <div class="main-title">
+      POZZALLO
+      <span>LIVE.</span>
+    </div>
+
+    <div class="subtitle">
+      La tua città. Ogni giorno.  
+      Locali, persone, eventi e storie vere.
+    </div>
+
+    <a href="eventi.html" class="cta">
+      Scopri cosa succede oggi →
+    </a>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>🍸 Locali</h3>
+        <p>
+          I migliori posti veri di Pozzallo.
+          Non quelli da turista.
+        </p>
       </div>
-      <br>
 
-      🔥 <strong>Adesso:</strong> Piazza si sta muovendo<br><br>
-      🍸 <strong>Top aperitivo:</strong> Cantunera<br><br>
-      🎶 <strong>Tonight:</strong> Moka Caffè
+      <div class="card">
+        <h3>🗣 Community</h3>
+        <p>
+          La voce reale della città.
+          Chi vive Pozzallo davvero.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🎉 Eventi</h3>
+        <p>
+          Tutto quello che succede
+          e dove bisogna esserci.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>👤 Profilo</h3>
+        <p>
+          I tuoi posti, le tue scelte,
+          la tua presenza.
+        </p>
+      </div>
+
     </div>
 
-    <h2>📍 Adesso a Pozzallo</h2>
-
-    <div class="card">
-      <strong>🔴 Moka Caffè — Pienissimo</strong><br>
-      DJ iniziato, tavoli pieni e movimento forte
+    <div class="quote-box">
+      “Pozzallo non è solo un posto,  
+      è il nostro modo di <strong>viverlo.</strong>”
+      <br><br>
+      Fatto dai ragazzi. Per i ragazzi. 💙
     </div>
 
-    <div class="card">
-      <strong>🟠 Millesimo — Molto vivo</strong><br>
-      Il venerdì resta il cuore della serata
-    </div>
-
-    <div class="card">
-      <strong>🟢 Cantunera — Aperitivo vivo</strong><br>
-      Perfetto per iniziare e vedere le partite live
-    </div>
-
-    <h2>👑 Questo Weekend</h2>
-
-    <div class="card">
-      <strong>Giovedì → Moka Caffè</strong><br>
-      DJ, movimento e il classico punto fisso
-    </div>
-
-    <div class="card">
-      <strong>Venerdì → Millesimo</strong><br>
-      Il cuore della serata passa da lì
-    </div>
-
-    <div class="card">
-      <strong>Sabato → Utti + Piazza</strong><br>
-      Si parte tranquilli, poi si gira
-    </div>
-
-    <div class="card">
-      <strong>Domenica → Piazza + Lungomare</strong><br>
-      Aperitivo, passeggiata e relax
-    </div>
-
-    <h2>🏆 Live Ranking</h2>
-
-    <div class="card">
-      <strong>1. Millesimo 👑</strong><br>
-      Friday winner — serata intensa e sempre pieno
-    </div>
-
-    <div class="card">
-      <strong>2. Moka Caffè 🎶</strong><br>
-      Giovedì top — DJ e movimento continuo
-    </div>
-
-    <div class="card">
-      <strong>3. Cantunera 🍸</strong><br>
-      Aperitivo king — sociale e sempre presente
-    </div>
-
-    <div class="quote">
-      “Il weekend non si programma. Si vive.” 💙
-    </div>
-
-  </div>
+  </section>
 
   <div class="bottom-nav">
     <a href="index.html" class="active">Home</a>
