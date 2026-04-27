@@ -344,7 +344,9 @@ a<!DOCTYPE html>
     getFirestore,
     collection,
     getDocs,
-    addDoc
+    addDoc,
+    updateDoc,
+    doc
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -360,39 +362,63 @@ a<!DOCTYPE html>
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-async function loadComments() {
-  const commentsRef = collection(db, "comments");
-  const snapshot = await getDocs(commentsRef);
-  const commentsBox = document.getElementById("commentsBox");
+  async function loadComments() {
+    const commentsRef = collection(db, "comments");
+    const snapshot = await getDocs(commentsRef);
+    const commentsBox = document.getElementById("commentsBox");
 
-  commentsBox.innerHTML = "";
+    commentsBox.innerHTML = "";
 
-  snapshot.forEach((doc) => {
-    const data = doc.data();
+    snapshot.forEach((doc) => {
+      const data = doc.data();
 
-    commentsBox.innerHTML += `
-      <div style="margin-bottom:14px;">
-        💬 ${data.text}
-      </div>
-    `;
-  });
-}
-window.sendComment = async function () {
-  const input = document.getElementById("commentInput");
-  const text = input.value.trim();
+      commentsBox.innerHTML += `
+        <div style="margin-bottom:14px;">
+          💬 ${data.text}
+        </div>
+      `;
+    });
+  }
 
-  if (!text) return;
+  window.sendComment = async function () {
+    const input = document.getElementById("commentInput");
+    const text = input.value.trim();
 
-  await addDoc(collection(db, "comments"), {
-    text: text
-  });
+    if (!text) return;
 
-  input.value = "";
+    await addDoc(collection(db, "comments"), {
+      text: text
+    });
+
+    input.value = "";
+    loadComments();
+  };
+
+  async function loadHype() {
+    const snapshot = await getDocs(collection(db, "hype"));
+    const hypeBox = document.getElementById("hypeCount");
+
+    snapshot.forEach((item) => {
+      const data = item.data();
+      hypeBox.innerHTML = `🔥 Hype totale: ${data.count}`;
+    });
+  }
+
+  window.addHype = async function () {
+    const snapshot = await getDocs(collection(db, "hype"));
+
+    snapshot.forEach(async (item) => {
+      const ref = doc(db, "hype", item.id);
+      const current = item.data().count || 0;
+
+      await updateDoc(ref, {
+        count: current + 1
+      });
+    });
+
+    loadHype();
+  };
+
   loadComments();
-};
-  
-  loadComments();
+  loadHype();
 </script>
-  
-</body>
-</html>
