@@ -1,4 +1,4 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -110,7 +110,7 @@ a<!DOCTYPE html>
       font-size: 14px;
       font-weight: 600;
     }
-    
+
     .vote-btn {
       width: 100%;
       padding: 14px;
@@ -127,7 +127,7 @@ a<!DOCTYPE html>
     .vote-btn:hover {
       background: rgba(255,255,255,0.08);
     }
-    
+
     .comment-box {
       margin-top: 20px;
       background: rgba(255,255,255,0.04);
@@ -178,6 +178,7 @@ a<!DOCTYPE html>
     }
   </style>
 </head>
+
 <body>
 
 <div class="page">
@@ -187,23 +188,21 @@ a<!DOCTYPE html>
   </div>
 
   <div class="subtitle">
-    Qui Pozzallo decide davvero.  
+    Qui Pozzallo decide davvero.
     Vota, commenta e scopri dove si muove la serata.
   </div>
 
   <div class="section-title">
     🔥 Dove vai stasera?
-    
-  </div>
-  <div class="card">
-  <div class="question">
-    Quanto hype c'è per stasera?
   </div>
 
-  <div style="text-align:center; margin-top:20px;">
-    <button
-      onclick="addHype()"
-      style="
+  <div class="card">
+    <div class="question">
+      Quanto hype c'è per stasera?
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="addHype()" style="
         padding:16px 28px;
         border:none;
         border-radius:18px;
@@ -212,24 +211,20 @@ a<!DOCTYPE html>
         font-size:16px;
         font-weight:700;
         cursor:pointer;
-      "
-    >
-      🔥 Alza l’Hype
-    </button>
+      ">
+        🔥 Alza l’Hype
+      </button>
 
-    <div
-      id="hypeCount"
-      style="
+      <div id="hypeCount" style="
         margin-top:18px;
         font-size:20px;
         font-weight:800;
-      "
-    >
-      Caricamento hype...
+      ">
+        Caricamento hype...
+      </div>
     </div>
   </div>
-  </div>
-  
+
   <div class="card">
     <div class="question">
       Sabato sera — chi vince?
@@ -241,7 +236,7 @@ a<!DOCTYPE html>
         <span id="millesimoPercent">...</span>
       </div>
       <div class="bar">
-        <div class="fill" style="width:42%"></div>
+        <div class="fill"></div>
       </div>
     </div>
 
@@ -251,7 +246,7 @@ a<!DOCTYPE html>
         <span id="cantuneraPercent">...</span>
       </div>
       <div class="bar">
-        <div class="fill" style="width:31%"></div>
+        <div class="fill"></div>
       </div>
     </div>
 
@@ -261,7 +256,7 @@ a<!DOCTYPE html>
         <span id="mokaPercent">...</span>
       </div>
       <div class="bar">
-        <div class="fill" style="width:18%"></div>
+        <div class="fill"></div>
       </div>
     </div>
 
@@ -271,125 +266,64 @@ a<!DOCTYPE html>
         <span id="piazzaPercent">...</span>
       </div>
       <div class="bar">
-        <div class="fill" style="width:9%"></div>
+        <div class="fill"></div>
       </div>
     </div>
-    
-    <div style="margin-top: 24px;">
-  <button onclick="votePlace('Millesimo')" class="vote-btn">
-    Vota Millesimo
-  </button>
 
-  <button onclick="votePlace('Cantunera')" class="vote-btn">
-    Vota Cantunera
-  </button>
-
-  <button onclick="votePlace('Moka Caffè')" class="vote-btn">
-    Vota Moka Caffè
-  </button>
-
-  <button onclick="votePlace('Piazza')" class="vote-btn">
-    Vota Piazza
-  </button>
+    <div style="margin-top:24px;">
+      <button onclick="votePlace('Millesimo')" class="vote-btn">Vota Millesimo</button>
+      <button onclick="votePlace('Cantunera')" class="vote-btn">Vota Cantunera</button>
+      <button onclick="votePlace('Moka Caffè')" class="vote-btn">Vota Moka Caffè</button>
+      <button onclick="votePlace('Piazza')" class="vote-btn">Vota Piazza</button>
     </div>
-    <div style="margin-top: 24px;">
-  <button onclick="setPresence('Millesimo')" class="vote-btn">
-    Sono al Millesimo
-  </button>
 
-  <button onclick="setPresence('Cantunera')" class="vote-btn">
-    Sono alla Cantunera
-  </button>
-
-  <button onclick="setPresence('Moka Caffè')" class="vote-btn">
-    Sono al Moka Caffè
-  </button>
-
-  <button onclick="setPresence('Piazza')" class="vote-btn">
-    Sono in Piazza
-  </button>
+    <div style="margin-top:24px;">
+      <button onclick="setPresence('Millesimo')" class="vote-btn">Sono al Millesimo</button>
+      <button onclick="setPresence('Cantunera')" class="vote-btn">Sono alla Cantunera</button>
+      <button onclick="setPresence('Moka Caffè')" class="vote-btn">Sono al Moka Caffè</button>
+      <button onclick="setPresence('Piazza')" class="vote-btn">Sono in Piazza</button>
     </div>
-    
-    <div class="quick-actions">
-      <div class="action-btn">👍 Presente</div>
-      <div class="action-btn">🔥 Top</div>
-      <div class="action-btn">🍸 Ci sarò</div>
-    </div>
-     <div style="margin-top:20px; margin-bottom:18px;">
-  <input
-    type="text"
-    id="commentInput"
-    placeholder="Scrivi un commento..."
-    style="
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:16px;
-      background: rgba(255,255,255,0.06);
-      color:white;
-      font-size:14px;
-      outline:none;
-    "
-  >
 
-  <button
-    onclick="sendComment()"
-    style="
-      width:100%;
-      margin-top:12px;
-      padding:14px;
-      border:none;
-      border-radius:16px;
-      background: linear-gradient(90deg, #7c3aed, #3b82f6);
-      color:white;
-      font-weight:700;
-      font-size:15px;
-    "
-  >
-    Pubblica commento 🚀
-  </button>
-     </div>
-    
+    <div style="margin-top:20px; margin-bottom:18px;">
+      <input
+        type="text"
+        id="commentInput"
+        placeholder="Scrivi un commento..."
+        style="
+          width:100%;
+          padding:14px;
+          border:none;
+          border-radius:16px;
+          background: rgba(255,255,255,0.06);
+          color:white;
+          font-size:14px;
+          outline:none;
+        "
+      >
+
+      <button onclick="sendComment()" style="
+        width:100%;
+        margin-top:12px;
+        padding:14px;
+        border:none;
+        border-radius:16px;
+        background: linear-gradient(90deg, #7c3aed, #3b82f6);
+        color:white;
+        font-weight:700;
+        font-size:15px;
+      ">
+        Pubblica commento 🚀
+      </button>
+    </div>
+
     <div class="comment-box" id="commentsBox">
-  Caricamento commenti live...
+      Caricamento commenti live...
     </div>
-  </div>
-
-  <div class="section-title">
-    📍 Stato Live Locali
-  </div>
-
-  <div class="card status-card">
-
-    <div class="status-item">
-      🔴 Moka Caffè — pienissimo  
-      <br>
-      DJ già partito e tavoli pieni
-    </div>
-
-    <div class="status-item">
-      🟠 Millesimo — si sta muovendo  
-      <br>
-      il cuore del weekend inizia
-    </div>
-
-    <div class="status-item">
-      🟢 Cantunera — aperitivo vibe  
-      <br>
-      perfetto per iniziare tranquilli
-    </div>
-
   </div>
 
 </div>
 
-<div class="bottom-nav">
-  <a href="index.html">Home</a>
-  <a href="locali.html">Locali</a>
-  <a href="community.html" class="active">Community</a>
-  <a href="eventi.html">Eventi</a>
-  <a href="profilo.html">Profilo</a>
-</div>
+<script type="module">
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -471,121 +405,121 @@ a<!DOCTYPE html>
   };
 
   window.votePlace = async function (place) {
-  const snapshot = await getDocs(collection(db, "votes"));
+    const snapshot = await getDocs(collection(db, "votes"));
 
-  snapshot.forEach(async (item) => {
-    if (item.id === "night_poll") {
-      const ref = doc(db, "votes", item.id);
-      const data = item.data();
+    snapshot.forEach(async (item) => {
+      if (item.id === "night_poll") {
+        const ref = doc(db, "votes", item.id);
+        const data = item.data();
 
-      let updatedValue = 0;
+        if (place === "Millesimo") {
+          await updateDoc(ref, {
+            millesimo: (data.millesimo || 0) + 1
+          });
+        }
 
-      if (place === "Millesimo") {
-        updatedValue = (data.millesimo || 0) + 1;
-        await updateDoc(ref, {
-          millesimo: updatedValue
-        });
+        if (place === "Cantunera") {
+          await updateDoc(ref, {
+            cantunera: (data.cantunera || 0) + 1
+          });
+        }
+
+        if (place === "Moka Caffè") {
+          await updateDoc(ref, {
+            moka: (data.moka || 0) + 1
+          });
+        }
+
+        if (place === "Piazza") {
+          await updateDoc(ref, {
+            piazza: (data.piazza || 0) + 1
+          });
+        }
+
+        alert("Voto registrato con successo");
+        loadVotes();
       }
+    });
+  };
 
-      if (place === "Cantunera") {
-        updatedValue = (data.cantunera || 0) + 1;
-        await updateDoc(ref, {
-          cantunera: updatedValue
-        });
+  async function loadVotes() {
+    const snapshot = await getDocs(collection(db, "votes"));
+
+    snapshot.forEach((item) => {
+      if (item.id === "night_poll") {
+        const data = item.data();
+
+        const millesimo = data.millesimo || 0;
+        const cantunera = data.cantunera || 0;
+        const moka = data.moka || 0;
+        const piazza = data.piazza || 0;
+
+        const total =
+          millesimo +
+          cantunera +
+          moka +
+          piazza;
+
+        if (total === 0) return;
+
+        document.getElementById("millesimoPercent").innerHTML =
+          Math.round((millesimo / total) * 100) + "%";
+
+        document.getElementById("cantuneraPercent").innerHTML =
+          Math.round((cantunera / total) * 100) + "%";
+
+        document.getElementById("mokaPercent").innerHTML =
+          Math.round((moka / total) * 100) + "%";
+
+        document.getElementById("piazzaPercent").innerHTML =
+          Math.round((piazza / total) * 100) + "%";
       }
+    });
+  }
 
-      if (place === "Moka Caffè") {
-        updatedValue = (data.moka || 0) + 1;
-        await updateDoc(ref, {
-          moka: updatedValue
-        });
-      }
-
-      if (place === "Piazza") {
-        updatedValue = (data.piazza || 0) + 1;
-        await updateDoc(ref, {
-          piazza: updatedValue
-        });
-      }
-
-      alert("Voto registrato con successo");
-      loadVotes();
-    }
-  });
-};
-
-async function loadVotes() {
-  const snapshot = await getDocs(collection(db, "votes"));
-
-  snapshot.forEach((item) => {
-    if (item.id === "night_poll") {
-      const data = item.data();
-
-      const millesimo = data.millesimo || 0;
-      const cantunera = data.cantunera || 0;
-      const moka = data.moka || 0;
-      const piazza = data.piazza || 0;
-
-      const total =
-        millesimo +
-        cantunera +
-        moka +
-        piazza;
-
-      if (total === 0) return;
-
-      document.getElementById("millesimoPercent").innerHTML =
-        Math.round((millesimo / total) * 100) + "%";
-
-      document.getElementById("cantuneraPercent").innerHTML =
-        Math.round((cantunera / total) * 100) + "%";
-
-      document.getElementById("mokaPercent").innerHTML =
-        Math.round((moka / total) * 100) + "%";
-
-      document.getElementById("piazzaPercent").innerHTML =
-        Math.round((piazza / total) * 100) + "%";
-    }
-  });
-}
   window.setPresence = async function (place) {
-  const snapshot = await getDocs(collection(db, "presence"));
+    const snapshot = await getDocs(collection(db, "presence"));
 
-  snapshot.forEach(async (item) => {
-    if (item.id === "night_live") {
-      const ref = doc(db, "presence", item.id);
-      const data = item.data();
+    snapshot.forEach(async (item) => {
+      if (item.id === "night_live") {
+        const ref = doc(db, "presence", item.id);
+        const data = item.data();
 
-      if (place === "Millesimo") {
-        await updateDoc(ref, {
-          millesimo: (data.millesimo || 0) + 1
-        });
+        if (place === "Millesimo") {
+          await updateDoc(ref, {
+            millesimo: (data.millesimo || 0) + 1
+          });
+        }
+
+        if (place === "Cantunera") {
+          await updateDoc(ref, {
+            cantunera: (data.cantunera || 0) + 1
+          });
+        }
+
+        if (place === "Moka Caffè") {
+          await updateDoc(ref, {
+            moka: (data.moka || 0) + 1
+          });
+        }
+
+        if (place === "Piazza") {
+          await updateDoc(ref, {
+            piazza: (data.piazza || 0) + 1
+          });
+        }
+
+        alert("Presenza registrata");
       }
+    });
+  };
 
-      if (place === "Cantunera") {
-        await updateDoc(ref, {
-          cantunera: (data.cantunera || 0) + 1
-        });
-      }
-
-      if (place === "Moka Caffè") {
-        await updateDoc(ref, {
-          moka: (data.moka || 0) + 1
-        });
-      }
-
-      if (place === "Piazza") {
-        await updateDoc(ref, {
-          piazza: (data.piazza || 0) + 1
-        });
-      }
-
-      alert("Presenza registrata");
-    }
-  });
-};
-  
   loadComments();
   loadHype();
   loadVotes();
 </script>
+
+</script>
+
+</body>
+</html>
