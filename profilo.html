@@ -6,55 +6,88 @@
   <title>Pozzallo Live - Profilo</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #1f2937;
     }
 
-    .container {
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 20px;
-      background: white;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 100px;
+    body {
+      background: #050816;
+      color: white;
+    }
+
+    .page {
+      padding: 30px 20px 120px;
+      max-width: 500px;
+      margin: auto;
     }
 
     .hero {
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      color: white;
-      padding: 28px;
-      border-radius: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 30px;
+    .title {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .title span {
+      color: #0ea5e9;
     }
 
     .subtitle {
-      margin-top: 10px;
       font-size: 16px;
-      opacity: 0.95;
+      opacity: 0.9;
+      line-height: 1.6;
     }
 
-    h2 {
-      margin: 24px 0 14px;
-      font-size: 20px;
+    .section-title {
+      margin: 30px 0 18px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
       margin-bottom: 14px;
-      line-height: 1.5;
+      background: rgba(14,165,233,0.15);
+      color: #7dd3fc;
+    }
+
+    .description {
+      line-height: 1.7;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .highlight {
+      margin-top: 14px;
+      color: #7dd3fc;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .bottom-nav {
@@ -62,84 +95,135 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
+      background: rgba(5, 8, 22, 0.96);
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-around;
-      font-size: 14px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+      padding: 18px 0;
+      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
+      color: white;
       text-decoration: none;
-      color: #1f2937;
+      font-size: 14px;
       font-weight: 600;
+      opacity: 0.85;
     }
 
-    .active {
-      color: #2563eb;
+    .bottom-nav a.active {
+      color: #0ea5e9;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="page">
 
     <div class="hero">
-      <h1>Profilo 👤</h1>
+      <div class="title">
+        PROFILO <span>LIVE.</span>
+      </div>
+
       <div class="subtitle">
-        La tua presenza dentro Pozzallo Live
+        La tua presenza dentro Pozzallo.  
+        Non solo guardi. Fai parte del gioco.
       </div>
     </div>
 
-    <h2>👑 Il tuo profilo</h2>
-
-    <div class="card">
-      <strong>Nome utente:</strong><br>
-      Pozzallo Insider<br><br>
-
-      <strong>Livello:</strong><br>
-      Top Local Explorer 🔥<br><br>
-
-      <strong>Badge:</strong><br>
-      Community Founder 👑
+    <div class="section-title">
+      👑 Il tuo status
     </div>
 
-    <h2>🍸 I tuoi preferiti</h2>
-
     <div class="card">
-      • Cantunera<br>
-      • Millesimo<br>
-      • Moka Caffè
+      <div class="profile-name">
+        Pozzallo Insider
+      </div>
+
+      <div class="badge">
+        Community Founder 👑
+      </div>
+
+      <div class="description">
+        Vivi la città,
+        conosci i posti giusti
+        e fai parte di chi muove davvero Pozzallo.
+      </div>
+
+      <div class="highlight">
+        Livello attuale: Top Local Explorer 🔥
+      </div>
     </div>
 
-    <h2>🗣 Ultimi contributi</h2>
-
-    <div class="card">
-      “Giovedì si parte sempre dal Moka.”<br><br>
-
-      “Venerdì Millesimo resta imbattibile.”
+    <div class="section-title">
+      🍸 I tuoi preferiti
     </div>
 
-    <h2>📍 Attività recente</h2>
-
     <div class="card">
-      Hai votato:<br>
-      Team Millesimo 👑<br><br>
+      <div class="description">
+        • Cantunera  
+        <br>
+        • Millesimo  
+        <br>
+        • Moka Caffè
+      </div>
 
-      Hai partecipato a:<br>
-      Pozzallo Dice 🔥
+      <div class="highlight">
+        I tuoi posti parlano per te.
+      </div>
     </div>
 
-    <h2>🏆 Obiettivo Community</h2>
+    <div class="section-title">
+      🗣 Ultimi contributi
+    </div>
 
     <div class="card">
-      Prossimo badge da sbloccare:<br><br>
+      <div class="description">
+        “Giovedì si parte sempre dal Moka.”  
+        <br><br>
+        “Venerdì Millesimo resta imbattibile.”
+      </div>
 
-      <strong>Pozzallo Legend 🌊</strong><br><br>
+      <div class="highlight">
+        La community ascolta.
+      </div>
+    </div>
 
-      Continua a partecipare per salire di livello
+    <div class="section-title">
+      📍 Attività recente
+    </div>
+
+    <div class="card">
+      <div class="description">
+        Hai votato:  
+        <strong>Team Millesimo 👑</strong>
+        <br><br>
+
+        Hai partecipato a:  
+        <strong>Pozzallo Dice 🔥</strong>
+      </div>
+
+      <div class="highlight">
+        La tua presenza conta.
+      </div>
+    </div>
+
+    <div class="section-title">
+      🏆 Prossimo obiettivo
+    </div>
+
+    <div class="card">
+      <div class="description">
+        Badge da sbloccare:
+        <br><br>
+
+        <strong>Pozzallo Legend 🌊</strong>
+      </div>
+
+      <div class="highlight">
+        Continua a partecipare per salire di livello.
+      </div>
     </div>
 
   </div>
