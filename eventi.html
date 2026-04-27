@@ -6,55 +6,88 @@
   <title>Pozzallo Live - Eventi</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #1f2937;
     }
 
-    .container {
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 20px;
-      background: white;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 100px;
+    body {
+      background: #050816;
+      color: white;
+    }
+
+    .page {
+      padding: 30px 20px 120px;
+      max-width: 500px;
+      margin: auto;
     }
 
     .hero {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-      color: white;
-      padding: 28px;
-      border-radius: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 30px;
+    .title {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .title span {
+      color: #f97316;
     }
 
     .subtitle {
-      margin-top: 10px;
       font-size: 16px;
-      opacity: 0.95;
+      opacity: 0.9;
+      line-height: 1.6;
     }
 
-    h2 {
-      margin: 24px 0 14px;
-      font-size: 20px;
+    .section-title {
+      margin: 30px 0 18px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .event-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
       margin-bottom: 14px;
-      line-height: 1.5;
+      background: rgba(249,115,22,0.15);
+      color: #fdba74;
+    }
+
+    .description {
+      line-height: 1.7;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .highlight {
+      margin-top: 14px;
+      color: #fdba74;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .bottom-nav {
@@ -62,76 +95,153 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
+      background: rgba(5, 8, 22, 0.96);
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-around;
-      font-size: 14px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+      padding: 18px 0;
+      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
+      color: white;
       text-decoration: none;
-      color: #1f2937;
+      font-size: 14px;
       font-weight: 600;
+      opacity: 0.85;
     }
 
-    .active {
-      color: #2563eb;
+    .bottom-nav a.active {
+      color: #f97316;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="page">
 
     <div class="hero">
-      <h1>Eventi 🎉</h1>
+      <div class="title">
+        EVENTI <span>LIVE.</span>
+      </div>
+
       <div class="subtitle">
-        Tutto quello che muove Pozzallo
+        Tutto quello che muove davvero Pozzallo.  
+        Non perdere la serata giusta.
       </div>
     </div>
 
-    <h2>🔥 Questa Settimana</h2>
-
-    <div class="card">
-      <strong>Giovedì → Moka Caffè 🎶</strong><br><br>
-      DJ set, tavoli pieni e serata che parte forte già presto
+    <div class="section-title">
+      🔥 Tonight
     </div>
 
     <div class="card">
-      <strong>Venerdì → Millesimo 👑</strong><br><br>
-      La vera notte del weekend — il centro della serata
+      <div class="event-name">
+        Giovedì → Moka Caffè 🎶
+      </div>
+
+      <div class="tag">Tonight Hot Spot</div>
+
+      <div class="description">
+        DJ set, tavoli pieni
+        e il classico giovedì che
+        parte forte già presto.
+      </div>
+
+      <div class="highlight">
+        Se è giovedì, probabilmente sei lì.
+      </div>
     </div>
 
     <div class="card">
-      <strong>Sabato → Piazza + Utti + Cantunera 🍸</strong><br><br>
-      Si parte tranquilli e poi si sceglie dove finire
-    </div>
+      <div class="event-name">
+        Venerdì → Millesimo 👑
+      </div>
 
-    <h2>🌊 Estate a Pozzallo</h2>
+      <div class="tag">Weekend Main Event</div>
 
-    <div class="card">
-      <strong>Lungomare Pietre Nere</strong><br><br>
-      Passeggiate piene, lidi attivi e movimento fino a tardi
-    </div>
+      <div class="description">
+        Il centro del weekend.
+        La notte che conta davvero.
+      </div>
 
-    <div class="card">
-      <strong>Piazza Centrale</strong><br><br>
-      Eventi live, palco, DJ e il cuore sociale del paese
-    </div>
-
-    <h2>⛪ Eventi Speciali</h2>
-
-    <div class="card">
-      <strong>Festa di San Giovanni</strong><br><br>
-      Patrono, piazza pienissima, serate speciali e tantissimo movimento
+      <div class="highlight">
+        Il venerdì ha quasi sempre un nome.
+      </div>
     </div>
 
     <div class="card">
-      <strong>Eventi estivi live</strong><br><br>
-      Musica, spettacoli e notti che cambiano il ritmo della città
+      <div class="event-name">
+        Sabato → Piazza + Cantunera 🍸
+      </div>
+
+      <div class="tag">Flow Night</div>
+
+      <div class="description">
+        Si parte tranquilli,
+        si gira,
+        e si sceglie dove finire.
+      </div>
+
+      <div class="highlight">
+        Sabato non si programma. Si vive.
+      </div>
+    </div>
+
+    <div class="section-title">
+      🌊 Estate Pozzallo
+    </div>
+
+    <div class="card">
+      <div class="event-name">
+        Lungomare Pietre Nere
+      </div>
+
+      <div class="tag">Summer Mood</div>
+
+      <div class="description">
+        Passeggiate piene,
+        lidi vivi
+        e movimento fino a tardi.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="event-name">
+        Piazza Centrale
+      </div>
+
+      <div class="tag">Social Core</div>
+
+      <div class="description">
+        Eventi live,
+        palco,
+        DJ e il cuore sociale del paese.
+      </div>
+    </div>
+
+    <div class="section-title">
+      ⛪ Eventi Speciali
+    </div>
+
+    <div class="card">
+      <div class="event-name">
+        Festa di San Giovanni
+      </div>
+
+      <div class="tag">Big Crowd</div>
+
+      <div class="description">
+        Patrono,
+        piazza pienissima,
+        serate speciali
+        e movimento totale.
+      </div>
+
+      <div class="highlight">
+        Qui Pozzallo cambia ritmo.
+      </div>
     </div>
 
   </div>
