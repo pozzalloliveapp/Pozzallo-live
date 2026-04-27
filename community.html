@@ -257,7 +257,25 @@ a<!DOCTYPE html>
         <div class="fill" style="width:9%"></div>
       </div>
     </div>
+    
+    <div style="margin-top: 24px;">
+  <button onclick="votePlace('Millesimo')" class="vote-btn">
+    Vota Millesimo
+  </button>
 
+  <button onclick="votePlace('Cantunera')" class="vote-btn">
+    Vota Cantunera
+  </button>
+
+  <button onclick="votePlace('Moka Caffè')" class="vote-btn">
+    Vota Moka Caffè
+  </button>
+
+  <button onclick="votePlace('Piazza')" class="vote-btn">
+    Vota Piazza
+  </button>
+    </div>
+    
     <div class="quick-actions">
       <div class="action-btn">👍 Presente</div>
       <div class="action-btn">🔥 Top</div>
@@ -363,18 +381,17 @@ a<!DOCTYPE html>
   const db = getFirestore(app);
 
   async function loadComments() {
-    const commentsRef = collection(db, "comments");
-    const snapshot = await getDocs(commentsRef);
+    const snapshot = await getDocs(collection(db, "comments"));
     const commentsBox = document.getElementById("commentsBox");
 
     commentsBox.innerHTML = "";
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
+    snapshot.forEach((item) => {
+      const data = item.data();
 
       commentsBox.innerHTML += `
         <div style="margin-bottom:14px;">
-          💬 ${data.text}
+          ${data.text}
         </div>
       `;
     });
@@ -400,7 +417,7 @@ a<!DOCTYPE html>
 
     snapshot.forEach((item) => {
       const data = item.data();
-      hypeBox.innerHTML = `🔥 Hype totale: ${data.count}`;
+      hypeBox.innerHTML = `Hype totale: ${data.count}`;
     });
   }
 
@@ -417,6 +434,10 @@ a<!DOCTYPE html>
     });
 
     loadHype();
+  };
+
+  window.votePlace = function (place) {
+    alert("Voto registrato per: " + place);
   };
 
   loadComments();
