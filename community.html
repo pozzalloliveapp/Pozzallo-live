@@ -472,6 +472,17 @@
 
         document.getElementById("piazzaPercent").innerHTML =
           Math.round((piazza / total) * 100) + "%";
+        document.getElementById("millesimoBar").style.width =
+  Math.round((millesimo / total) * 100) + "%";
+
+document.getElementById("cantuneraBar").style.width =
+  Math.round((cantunera / total) * 100) + "%";
+
+document.getElementById("mokaBar").style.width =
+  Math.round((moka / total) * 100) + "%";
+
+document.getElementById("piazzaBar").style.width =
+  Math.round((piazza / total) * 100) + "%";
       }
     });
   }
