@@ -228,7 +228,41 @@
       <div class="action-btn">🔥 Top</div>
       <div class="action-btn">🍸 Ci sarò</div>
     </div>
+     <div style="margin-top:20px; margin-bottom:18px;">
+  <input
+    type="text"
+    id="commentInput"
+    placeholder="Scrivi un commento..."
+    style="
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:16px;
+      background: rgba(255,255,255,0.06);
+      color:white;
+      font-size:14px;
+      outline:none;
+    "
+  >
 
+  <button
+    onclick="sendComment()"
+    style="
+      width:100%;
+      margin-top:12px;
+      padding:14px;
+      border:none;
+      border-radius:16px;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6);
+      color:white;
+      font-weight:700;
+      font-size:15px;
+    "
+  >
+    Pubblica commento 🚀
+  </button>
+     </div>
+    
     <div class="comment-box" id="commentsBox">
   Caricamento commenti live...
     </div>
