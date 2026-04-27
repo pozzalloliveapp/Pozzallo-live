@@ -453,9 +453,48 @@ a<!DOCTYPE html>
     loadHype();
   };
 
-  window.votePlace = function (place) {
-    alert("Voto registrato per: " + place);
-  };
+  window.votePlace = async function (place) {
+  const snapshot = await getDocs(collection(db, "votes"));
+
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_poll") {
+      const ref = doc(db, "votes", item.id);
+      const data = item.data();
+
+      let updatedValue = 0;
+
+      if (place === "Millesimo") {
+        updatedValue = (data.millesimo || 0) + 1;
+        await updateDoc(ref, {
+          millesimo: updatedValue
+        });
+      }
+
+      if (place === "Cantunera") {
+        updatedValue = (data.cantunera || 0) + 1;
+        await updateDoc(ref, {
+          cantunera: updatedValue
+        });
+      }
+
+      if (place === "Moka Caffè") {
+        updatedValue = (data.moka || 0) + 1;
+        await updateDoc(ref, {
+          moka: updatedValue
+        });
+      }
+
+      if (place === "Piazza") {
+        updatedValue = (data.piazza || 0) + 1;
+        await updateDoc(ref, {
+          piazza: updatedValue
+        });
+      }
+
+      alert("Voto registrato con successo");
+    }
+  });
+};
 
   loadComments();
   loadHype();
