@@ -6,55 +6,88 @@
   <title>Pozzallo Live - Community</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #1f2937;
     }
 
-    .container {
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 20px;
-      background: white;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 100px;
+    body {
+      background: #050816;
+      color: white;
+    }
+
+    .page {
+      padding: 30px 20px 120px;
+      max-width: 500px;
+      margin: auto;
     }
 
     .hero {
-      background: linear-gradient(135deg, #7c3aed, #2563eb);
-      color: white;
-      padding: 28px;
-      border-radius: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 30px;
+    .title {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .title span {
+      color: #7c3aed;
     }
 
     .subtitle {
-      margin-top: 10px;
       font-size: 16px;
-      opacity: 0.95;
+      opacity: 0.9;
+      line-height: 1.6;
     }
 
-    h2 {
-      margin: 24px 0 14px;
-      font-size: 20px;
+    .section-title {
+      margin: 30px 0 18px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .topic {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
       margin-bottom: 14px;
-      line-height: 1.5;
+      background: rgba(124,58,237,0.15);
+      color: #c4b5fd;
+    }
+
+    .description {
+      line-height: 1.7;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .vote {
+      margin-top: 14px;
+      color: #c4b5fd;
+      font-weight: bold;
+      font-size: 14px;
     }
 
     .bottom-nav {
@@ -62,77 +95,137 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 14px 0;
+      background: rgba(5, 8, 22, 0.96);
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-around;
-      font-size: 14px;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+      padding: 18px 0;
+      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
+      color: white;
       text-decoration: none;
-      color: #1f2937;
+      font-size: 14px;
       font-weight: 600;
+      opacity: 0.85;
     }
 
-    .active {
-      color: #2563eb;
+    .bottom-nav a.active {
+      color: #7c3aed;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="page">
 
     <div class="hero">
-      <h1>Community 🗣</h1>
+      <div class="title">
+        COMMUNITY <span>LIVE.</span>
+      </div>
+
       <div class="subtitle">
-        La voce vera di Pozzallo
+        La voce vera di Pozzallo.  
+        Qui non si guarda soltanto. Si partecipa.
       </div>
     </div>
 
-    <h2>🔥 Pozzallo Dice</h2>
-
-    <div class="card">
-      <strong>Team Cantunera 🍸 vs Team Millesimo 👑</strong><br><br>
-
-      Se devi scegliere un solo posto per il weekend…<br>
-      chi vince davvero?<br><br>
-
-      → Aperitivo e sociale = Cantunera<br>
-      → Intensità e venerdì forte = Millesimo
+    <div class="section-title">
+      🔥 Pozzallo Dice
     </div>
 
     <div class="card">
-      <strong>🎶 Giovedì si finisce sempre al Moka?</strong><br><br>
+      <div class="topic">
+        Team Cantunera 🍸 vs Team Millesimo 👑
+      </div>
 
-      Pozzallo dice sì.<br>
-      Tu che ne pensi?
+      <div class="tag">Weekend Battle</div>
+
+      <div class="description">
+        Se devi scegliere un solo posto
+        per vivere davvero il weekend...
+        chi vince?
+      </div>
+
+      <div class="vote">
+        → Aperitivo & stile = Cantunera  
+        <br>
+        → Intensità & venerdì = Millesimo
+      </div>
     </div>
 
     <div class="card">
-      <strong>🌊 Domenica migliore?</strong><br><br>
+      <div class="topic">
+        🎶 Giovedì = sempre Moka?
+      </div>
 
-      Piazza + Lungomare Pietre Nere resta imbattibile?<br>
-      Oppure hai un altro posto fisso?
+      <div class="tag">Thursday Ritual</div>
+
+      <div class="description">
+        Pozzallo dice sì.
+        Il giovedì ha quasi sempre
+        lo stesso finale.
+      </div>
+
+      <div class="vote">
+        Tu confermi o cambi percorso?
+      </div>
     </div>
 
     <div class="card">
-      <strong>🍸 Dove inizi davvero la serata?</strong><br><br>
+      <div class="topic">
+        🌊 La domenica perfetta
+      </div>
 
-      Prima aperitivo tranquillo?<br>
-      Oppure vai subito nel vivo?
+      <div class="tag">Summer Mood</div>
+
+      <div class="description">
+        Piazza + Lungomare Pietre Nere
+        resta imbattibile?
+        Oppure hai un posto segreto?
+      </div>
+
+      <div class="vote">
+        Il tuo rito domenicale?
+      </div>
     </div>
 
     <div class="card">
-      <strong>👑 Il re dell’estate a Pozzallo?</strong><br><br>
+      <div class="topic">
+        🍸 Dove inizi davvero la serata?
+      </div>
 
-      Piazza?<br>
-      Lungomare?<br>
-      Cantunera?<br>
-      Millesimo?
+      <div class="tag">Start Point</div>
+
+      <div class="description">
+        Prima aperitivo tranquillo,
+        oppure vai subito nel vivo?
+      </div>
+
+      <div class="vote">
+        La tua prima mossa conta.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="topic">
+        👑 Il re dell’estate
+      </div>
+
+      <div class="tag">Crown Choice</div>
+
+      <div class="description">
+        Piazza?  
+        Lungomare?  
+        Cantunera?  
+        Millesimo?
+      </div>
+
+      <div class="vote">
+        Solo uno prende la corona.
+      </div>
     </div>
 
   </div>
