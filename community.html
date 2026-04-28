@@ -640,13 +640,22 @@ window.sendComment = async function () {
   const username =
     localStorage.getItem("pl_username") || "Utente Live";
 
+  const email =
+    localStorage.getItem("pl_email") || "";
+
+  const photo =
+    localStorage.getItem("pl_profile_photo") || "";
+
   await addDoc(collection(db, "comments"), {
     text: text,
     username: username,
+    email: email,
+    photo: photo,
     createdAt: Date.now()
   });
 
   input.value = "";
+
   loadComments();
   loadTopUsers();
 };
