@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pozzallo Live - Profilo</title>
-  <link rel="icon" type="image/png" href="logo_1.png">
-<link rel="apple-touch-icon" href="logo_1.png">
-<meta name="theme-color" content="#050816">
-  
+
+  <link rel="icon" type="image/png" href="Logo_1.png" />
+  <meta name="theme-color" content="#050816" />
+
   <style>
     * {
       margin: 0;
@@ -22,75 +22,77 @@
     }
 
     .page {
-      padding: 30px 20px 120px;
       max-width: 500px;
       margin: auto;
-    }
-
-    .hero {
-      margin-bottom: 35px;
+      padding: 30px 20px 120px;
     }
 
     .title {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 900;
-      line-height: 1;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .title span {
-      color: #0ea5e9;
+      color: #7c3aed;
     }
 
     .subtitle {
-      font-size: 16px;
+      font-size: 15px;
       opacity: 0.9;
+      margin-bottom: 30px;
       line-height: 1.6;
-    }
-
-    .section-title {
-      margin: 30px 0 18px;
-      font-size: 22px;
-      font-weight: bold;
     }
 
     .card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 22px;
-      margin-bottom: 16px;
-      backdrop-filter: blur(8px);
+      margin-bottom: 18px;
     }
 
-    .profile-name {
-      font-size: 24px;
-      font-weight: bold;
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6);
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
       margin-bottom: 12px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 14px;
-      background: rgba(14,165,233,0.15);
-      color: #7dd3fc;
+    .profile-box {
+      text-align: center;
+      line-height: 1.8;
+      font-size: 16px;
     }
 
-    .description {
-      line-height: 1.7;
-      font-size: 15px;
-      opacity: 0.95;
-    }
-
-    .highlight {
-      margin-top: 14px;
-      color: #7dd3fc;
-      font-weight: bold;
-      font-size: 14px;
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
     }
 
     .bottom-nav {
@@ -98,12 +100,11 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(5, 8, 22, 0.96);
+      background: rgba(5,8,22,0.96);
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       justify-content: space-around;
       padding: 18px 0;
-      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
@@ -115,129 +116,118 @@
     }
 
     .bottom-nav a.active {
-      color: #0ea5e9;
+      color: #7c3aed;
       opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <div class="page">
-
-    <div class="hero">
-      <div class="title">
-        PROFILO <span>LIVE.</span>
-      </div>
-
-      <div class="subtitle">
-        La tua presenza dentro Pozzallo.  
-        Non solo guardi. Fai parte del gioco.
-      </div>
-    </div>
-
-    <div class="section-title">
-      👑 Il tuo status
-    </div>
-
-    <div class="card">
-      <div class="profile-name">
-        Pozzallo Insider
-      </div>
-
-      <div class="badge">
-        Community Founder 👑
-      </div>
-
-      <div class="description">
-        Vivi la città,
-        conosci i posti giusti
-        e fai parte di chi muove davvero Pozzallo.
-      </div>
-
-      <div class="highlight">
-        Livello attuale: Top Local Explorer 🔥
-      </div>
-    </div>
-
-    <div class="section-title">
-      🍸 I tuoi preferiti
-    </div>
-
-    <div class="card">
-      <div class="description">
-        • Cantunera  
-        <br>
-        • Millesimo  
-        <br>
-        • Moka Caffè
-      </div>
-
-      <div class="highlight">
-        I tuoi posti parlano per te.
-      </div>
-    </div>
-
-    <div class="section-title">
-      🗣 Ultimi contributi
-    </div>
-
-    <div class="card">
-      <div class="description">
-        “Giovedì si parte sempre dal Moka.”  
-        <br><br>
-        “Venerdì Millesimo resta imbattibile.”
-      </div>
-
-      <div class="highlight">
-        La community ascolta.
-      </div>
-    </div>
-
-    <div class="section-title">
-      📍 Attività recente
-    </div>
-
-    <div class="card">
-      <div class="description">
-        Hai votato:  
-        <strong>Team Millesimo 👑</strong>
-        <br><br>
-
-        Hai partecipato a:  
-        <strong>Pozzallo Dice 🔥</strong>
-      </div>
-
-      <div class="highlight">
-        La tua presenza conta.
-      </div>
-    </div>
-
-    <div class="section-title">
-      🏆 Prossimo obiettivo
-    </div>
-
-    <div class="card">
-      <div class="description">
-        Badge da sbloccare:
-        <br><br>
-
-        <strong>Pozzallo Legend 🌊</strong>
-      </div>
-
-      <div class="highlight">
-        Continua a partecipare per salire di livello.
-      </div>
-    </div>
-
+<div class="page">
+  <div class="title">PROFILO <span>LIVE.</span></div>
+  <div class="subtitle">
+    Accedi o registrati per partecipare alla community.
   </div>
 
-  <div class="bottom-nav">
-    <a href="index.html">Home</a>
-    <a href="locali.html">Locali</a>
-    <a href="community.html">Community</a>
-    <a href="eventi.html">Eventi</a>
-    <a href="profilo.html" class="active">Profilo</a>
+  <div class="card" id="authBox">
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button class="btn" onclick="registerUser()">Registrati</button>
+    <button class="btn" onclick="loginUser()">Accedi</button>
   </div>
+
+  <div class="card" id="profileBox" style="display:none;">
+    <div class="profile-box">
+      <div class="avatar">👤</div>
+      <div><strong id="profileUsername">Username</strong></div>
+      <div id="profileEmail">email@email.com</div>
+      <br />
+      <button class="btn" onclick="logoutUser()">Esci</button>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="locali.html">Locali</a>
+  <a href="community.html">Community</a>
+  <a href="eventi.html">Eventi</a>
+  <a href="profilo.html" class="active">Profilo</a>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
+    authDomain: "pozzallolive2026.firebaseapp.com",
+    projectId: "pozzallolive2026",
+    storageBucket: "pozzallolive2026.firebasestorage.app",
+    messagingSenderId: "435479334572",
+    appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
+    measurementId: "G-3EZX810ZSH"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.registerUser = async function () {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) return;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Registrazione completata ✅");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  window.loginUser = async function () {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Accesso effettuato ✅");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  window.logoutUser = async function () {
+    await signOut(auth);
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    const authBox = document.getElementById("authBox");
+    const profileBox = document.getElementById("profileBox");
+
+    if (user) {
+      authBox.style.display = "none";
+      profileBox.style.display = "block";
+
+      document.getElementById("profileUsername").innerText =
+        document.getElementById("username").value || "Utente Live";
+
+      document.getElementById("profileEmail").innerText = user.email;
+    } else {
+      authBox.style.display = "block";
+      profileBox.style.display = "none";
+    }
+  });
+</script>
 
 </body>
 </html>
