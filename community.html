@@ -765,18 +765,26 @@ window.resetPresence = async function () {
   alert("Presenze resettate 📍");
 };
 
-window.sendAdminAlert = function () {
+window.sendAdminAlert = async function () {
   const message = prompt("Scrivi la notifica globale:");
 
   if (!message) return;
 
-  alert("📢 Notifica inviata:\n\n" + message);
+  await addDoc(collection(db, "notifications"), {
+    text: message,
+    createdAt: Date.now()
+  });
+
+  loadNotifications();
+
+  alert("📢 Notifica inviata!");
 };
 
 checkAdmin();
   
 loadHype();
 loadPresence();
+loadNotifications();
 loadRanking();
 loadComments();
 loadTopUsers();
