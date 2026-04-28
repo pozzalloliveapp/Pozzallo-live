@@ -485,6 +485,13 @@ window.votePlace = async function(place) {
 };
 
 window.setPresence = async function(place) {
+  const alreadyPresent = localStorage.getItem("pl_presence_set");
+
+  if (alreadyPresent) {
+    alert("Presenza già registrata 📍");
+    return;
+  }
+
   const snapshot = await getDocs(collection(db, "presence"));
 
   snapshot.forEach(async (item) => {
@@ -508,11 +515,14 @@ window.setPresence = async function(place) {
         await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
       }
 
+      localStorage.setItem("pl_presence_set", place);
+
       loadPresence();
+      alert("Presenza registrata 📍");
     }
   });
 };
-  
+
   async function loadPresence() {
   const snapshot = await getDocs(collection(db, "presence"));
 
