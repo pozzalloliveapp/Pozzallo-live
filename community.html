@@ -688,7 +688,79 @@ async function loadTopUsers() {
     `;
   }
 }
+function checkAdmin() {
+  const email = localStorage.getItem("pl_email");
 
+  if (email === "giovanniagosta7@gmail.com") {
+    document.getElementById("adminPanel").style.display = "block";
+  }
+}
+
+window.resetHype = async function () {
+  const snapshot = await getDocs(collection(db, "hype"));
+
+  snapshot.forEach(async (item) => {
+    const ref = doc(db, "hype", item.id);
+
+    await updateDoc(ref, {
+      count: 0
+    });
+  });
+
+  loadHype();
+  alert("Hype resettato 🔥");
+};
+
+window.resetVotes = async function () {
+  const snapshot = await getDocs(collection(db, "votes"));
+
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_poll") {
+      const ref = doc(db, "votes", item.id);
+
+      await updateDoc(ref, {
+        millesimo: 0,
+        cantunera: 0,
+        moka: 0,
+        piazza: 0
+      });
+    }
+  });
+
+  loadRanking();
+  alert("Votazioni resettate 🗳️");
+};
+
+window.resetPresence = async function () {
+  const snapshot = await getDocs(collection(db, "presence"));
+
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_live") {
+      const ref = doc(db, "presence", item.id);
+
+      await updateDoc(ref, {
+        millesimo: 0,
+        cantunera: 0,
+        moka: 0,
+        piazza: 0
+      });
+    }
+  });
+
+  loadPresence();
+  alert("Presenze resettate 📍");
+};
+
+window.sendAdminAlert = function () {
+  const message = prompt("Scrivi la notifica globale:");
+
+  if (!message) return;
+
+  alert("📢 Notifica inviata:\n\n" + message);
+};
+
+checkAdmin();
+  
 loadHype();
 loadPresence();
 loadRanking();
