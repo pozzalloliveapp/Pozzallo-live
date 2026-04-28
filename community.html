@@ -1,396 +1,561 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pozzallo Live - Community</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pozzallo Live - Community</title>
 
-  <link rel="icon" type="image/png" href="Logo_1.png">
-  <link rel="apple-touch-icon" href="Logo_1.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#050816">
+<link rel="icon" type="image/png" href="Logo_1.png">
+<link rel="apple-touch-icon" href="Logo_1.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050816">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-    body {
-      background: #050816;
-      color: white;
-    }
+body {
+  background: #050816;
+  color: white;
+}
 
-    .page {
-      padding: 30px 20px 120px;
-      max-width: 500px;
-      margin: auto;
-    }
+.page {
+  padding: 30px 20px 120px;
+  max-width: 500px;
+  margin: auto;
+}
 
-    .title {
-      font-size: 42px;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
+.title {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
 
-    .title span {
-      color: #7c3aed;
-    }
+.title span {
+  color: #7c3aed;
+}
 
-    .subtitle {
-      font-size: 15px;
-      opacity: 0.9;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
+.subtitle {
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
 
-    .section-title {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 30px 0 18px;
-    }
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 30px 0 18px;
+}
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      padding: 22px;
-      margin-bottom: 18px;
-      backdrop-filter: blur(10px);
-    }
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 18px;
+  backdrop-filter: blur(10px);
+}
 
-    .question {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
+.question {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
 
-    .vote-btn {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 12px;
-      border: none;
-      border-radius: 16px;
-      background: linear-gradient(90deg, #7c3aed, #3b82f6);
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+.vote-btn {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
-    .status-card {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+.vote-btn:hover {
+  opacity: 0.95;
+}
 
-    .status-item {
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      font-size: 15px;
-      line-height: 1.6;
-    }
+.poll-option {
+  margin-bottom: 18px;
+}
 
-    .badge-hot {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(124, 58, 237, 0.18);
-      border: 1px solid rgba(124, 58, 237, 0.35);
-      font-weight: bold;
-      text-align: center;
-    }
+.poll-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
 
-    .online-box {
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 12px;
-    }
+.bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+}
 
-    .comment-box {
-      margin-top: 20px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 18px;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 1.7;
-    }
+.fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.06);
-      color: white;
-      font-size: 14px;
-      outline: none;
-      margin-bottom: 12px;
-    }
+.status-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(5, 8, 22, 0.96);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      justify-content: space-around;
-      padding: 18px 0;
-    }
+.status-item {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  font-size: 15px;
+  line-height: 1.6;
+}
 
-    .bottom-nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0.85;
-    }
+.badge-hot {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  font-weight: bold;
+  text-align: center;
+}
 
-    .bottom-nav a.active {
-      color: #7c3aed;
-      opacity: 1;
-    }
-  </style>
+.online-box {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.comment-box {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 18px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 8, 22, 0.96);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-around;
+  padding: 18px 0;
+}
+
+.bottom-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.bottom-nav a.active {
+  color: #7c3aed;
+  opacity: 1;
+}
+</style>
 </head>
 
 <body>
 
 <div class="page">
 
-  <div class="title">
-    COMMUNITY <span>LIVE.</span>
-  </div>
+<div class="title">
+COMMUNITY <span>LIVE.</span>
+</div>
 
-  <div class="subtitle">
-    Qui Pozzallo decide davvero.
-    Vota, commenta e scopri dove si muove la serata.
-  </div>
+<div class="subtitle">
+Qui Pozzallo decide davvero.
+Vota, commenta e scopri dove si muove la serata.
+</div>
 
-  <div class="section-title">🔥 Dove vai stasera?</div>
+<div class="section-title">🔥 Dove vai stasera?</div>
 
-  <div class="card">
-    <div class="question">Quanto hype c'è per stasera?</div>
+<div class="card">
+<div class="question">Quanto hype c'è per stasera?</div>
 
-    <button onclick="addHype()" class="vote-btn">
-      🔥 Alza l’Hype
-    </button>
+<button onclick="addHype()" class="vote-btn">
+🔥 Alza l’Hype
+</button>
 
-    <div id="hypeCount" class="online-box">
-      Caricamento hype...
-    </div>
-  </div>
+<div id="hypeCount" class="online-box">
+Caricamento hype...
+</div>
+</div>
 
-  <div class="section-title">👥 Utenti Online Ora</div>
+<div class="section-title">🗳️ Votazione Live</div>
 
-  <div class="card">
-    <div id="onlineUsers" class="online-box">
-      Caricamento utenti online...
-    </div>
-  </div>
+<div class="card">
 
-  <div class="section-title">👑 Classifica Live della Notte</div>
+<div class="poll-option">
+<div class="poll-label">
+<span>Millesimo 👑</span>
+<span id="millesimoPercent">...</span>
+</div>
+<div class="bar">
+<div class="fill" id="millesimoBar"></div>
+</div>
+</div>
 
-  <div class="card">
-    <div id="liveRanking">
-      <div class="status-item">
-        Caricamento classifica live...
-      </div>
-    </div>
+<div class="poll-option">
+<div class="poll-label">
+<span>Cantunera 🍸</span>
+<span id="cantuneraPercent">...</span>
+</div>
+<div class="bar">
+<div class="fill" id="cantuneraBar"></div>
+</div>
+</div>
 
-    <div id="hotPlace" class="badge-hot">
-      Caricamento locale più caldo...
-    </div>
-  </div>
+<div class="poll-option">
+<div class="poll-label">
+<span>Moka Caffè 🎶</span>
+<span id="mokaPercent">...</span>
+</div>
+<div class="bar">
+<div class="fill" id="mokaBar"></div>
+</div>
+</div>
 
-  <div class="section-title">💬 Commenti Live</div>
+<div class="poll-option">
+<div class="poll-label">
+<span>Piazza 🌊</span>
+<span id="piazzaPercent">...</span>
+</div>
+<div class="bar">
+<div class="fill" id="piazzaBar"></div>
+</div>
+</div>
 
-  <div class="card">
-    <input
-      type="text"
-      id="commentInput"
-      placeholder="Scrivi un commento..."
-    >
+<button onclick="votePlace('Millesimo')" class="vote-btn">Vota Millesimo</button>
+<button onclick="votePlace('Cantunera')" class="vote-btn">Vota Cantunera</button>
+<button onclick="votePlace('Moka Caffè')" class="vote-btn">Vota Moka Caffè</button>
+<button onclick="votePlace('Piazza')" class="vote-btn">Vota Piazza</button>
 
-    <button onclick="sendComment()" class="vote-btn">
-      Pubblica commento 🚀
-    </button>
+</div>
 
-    <div id="commentsBox" class="comment-box">
-      Caricamento commenti...
-    </div>
-  </div>
+<div class="section-title">📍 Sono Qui Ora</div>
+
+<div class="card">
+<button onclick="setPresence('Millesimo')" class="vote-btn">Sono al Millesimo</button>
+<button onclick="setPresence('Cantunera')" class="vote-btn">Sono alla Cantunera</button>
+<button onclick="setPresence('Moka Caffè')" class="vote-btn">Sono al Moka Caffè</button>
+<button onclick="setPresence('Piazza')" class="vote-btn">Sono in Piazza</button>
+</div>
+
+<div class="section-title">👥 Utenti Online Ora</div>
+
+<div class="card">
+<div id="onlineUsers" class="online-box">
+Caricamento utenti online...
+</div>
+</div>
+
+<div class="section-title">👑 Classifica Live della Notte</div>
+
+<div class="card">
+<div id="liveRanking">
+<div class="status-item">
+Caricamento classifica live...
+</div>
+</div>
+
+<div id="hotPlace" class="badge-hot">
+Caricamento locale più caldo...
+</div>
+</div>
+
+<div class="section-title">💬 Commenti Live</div>
+
+<div class="card">
+
+<input
+type="text"
+id="commentInput"
+placeholder="Scrivi un commento..."
+>
+
+<button onclick="sendComment()" class="vote-btn">
+Pubblica commento 🚀
+</button>
+
+<div id="commentsBox" class="comment-box">
+Caricamento commenti...
+</div>
+
+</div>
+
 <div class="section-title">🏆 Utenti Più Attivi</div>
 
 <div class="card">
-  <div id="topUsers">
-    <div class="status-item">
-      Caricamento classifica utenti...
-    </div>
-  </div>
+<div id="topUsers">
+<div class="status-item">
+Caricamento classifica utenti...
 </div>
-  
-  <div class="section-title">📍 Stato Live Locali</div>
+</div>
+</div>
 
-  <div class="card status-card">
-    <div class="status-item" id="mokaLive">
-      🔴 Moka Caffè — caricamento...
-    </div>
+<div class="section-title">📍 Stato Live Locali</div>
 
-    <div class="status-item" id="millesimoLive">
-      🟠 Millesimo — caricamento...
-    </div>
+<div class="card status-card">
 
-    <div class="status-item" id="cantuneraLive">
-      🟢 Cantunera — caricamento...
-    </div>
+<div class="status-item" id="mokaLive">
+🔴 Moka Caffè — caricamento...
+</div>
 
-    <div class="status-item" id="piazzaLive">
-      🌊 Piazza — caricamento...
-    </div>
-  </div>
+<div class="status-item" id="millesimoLive">
+🟠 Millesimo — caricamento...
+</div>
+
+<div class="status-item" id="cantuneraLive">
+🟢 Cantunera — caricamento...
+</div>
+
+<div class="status-item" id="piazzaLive">
+🌊 Piazza — caricamento...
+</div>
+
+</div>
 
 </div>
 
 <div class="bottom-nav">
-  <a href="index.html">Home</a>
-  <a href="locali.html">Locali</a>
-  <a href="community.html" class="active">Community</a>
-  <a href="eventi.html">Eventi</a>
-  <a href="profilo.html">Profilo</a>
+<a href="index.html">Home</a>
+<a href="locali.html">Locali</a>
+<a href="community.html" class="active">Community</a>
+<a href="eventi.html">Eventi</a>
+<a href="profilo.html">Profilo</a>
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-  import {
-    getFirestore,
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    doc
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
-    authDomain: "pozzallolive2026.firebaseapp.com",
-    projectId: "pozzallolive2026",
-    storageBucket: "pozzallolive2026.firebasestorage.app",
-    messagingSenderId: "435479334572",
-    appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
-    measurementId: "G-3EZX810ZSH"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
+  authDomain: "pozzallolive2026.firebaseapp.com",
+  projectId: "pozzallolive2026",
+  storageBucket: "pozzallolive2026.firebasestorage.app",
+  messagingSenderId: "435479334572",
+  appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
+  measurementId: "G-3EZX810ZSH"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  async function loadHype() {
-    const snapshot = await getDocs(collection(db, "hype"));
-    const box = document.getElementById("hypeCount");
+async function loadHype() {
+  const snapshot = await getDocs(collection(db, "hype"));
+  const box = document.getElementById("hypeCount");
 
-    snapshot.forEach((item) => {
-      box.innerHTML = `🔥 Hype totale: ${item.data().count || 0}`;
+  snapshot.forEach((item) => {
+    box.innerHTML = `🔥 Hype totale: ${item.data().count || 0}`;
+  });
+}
+
+window.addHype = async function () {
+  const snapshot = await getDocs(collection(db, "hype"));
+
+  snapshot.forEach(async (item) => {
+    const ref = doc(db, "hype", item.id);
+    const current = item.data().count || 0;
+
+    await updateDoc(ref, {
+      count: current + 1
     });
-  }
+  });
 
-  window.addHype = async function () {
-    const snapshot = await getDocs(collection(db, "hype"));
+  loadHype();
+};
 
-    snapshot.forEach(async (item) => {
-      const ref = doc(db, "hype", item.id);
-      const current = item.data().count || 0;
+window.votePlace = async function(place) {
+  const snapshot = await getDocs(collection(db, "votes"));
 
-      await updateDoc(ref, {
-        count: current + 1
-      });
-    });
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_poll") {
+      const ref = doc(db, "votes", item.id);
+      const data = item.data();
 
-    loadHype();
-  };
+      if (place === "Millesimo") {
+        await updateDoc(ref, { millesimo: (data.millesimo || 0) + 1 });
+      }
 
+      if (place === "Cantunera") {
+        await updateDoc(ref, { cantunera: (data.cantunera || 0) + 1 });
+      }
+
+      if (place === "Moka Caffè") {
+        await updateDoc(ref, { moka: (data.moka || 0) + 1 });
+      }
+
+      if (place === "Piazza") {
+        await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
+      }
+
+      loadRanking();
+    }
+  });
+};
+
+window.setPresence = async function(place) {
+  const snapshot = await getDocs(collection(db, "presence"));
+
+  snapshot.forEach(async (item) => {
+    if (item.id === "night_live") {
+      const ref = doc(db, "presence", item.id);
+      const data = item.data();
+
+      if (place === "Millesimo") {
+        await updateDoc(ref, { millesimo: (data.millesimo || 0) + 1 });
+      }
+
+      if (place === "Cantunera") {
+        await updateDoc(ref, { cantunera: (data.cantunera || 0) + 1 });
+      }
+
+      if (place === "Moka Caffè") {
+        await updateDoc(ref, { moka: (data.moka || 0) + 1 });
+      }
+
+      if (place === "Piazza") {
+        await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
+      }
+
+      loadPresence();
+    }
+  });
+};
   async function loadPresence() {
-    const snapshot = await getDocs(collection(db, "presence"));
-        snapshot.forEach((item) => {
-      if (item.id === "night_live") {
-        const data = item.data();
+  const snapshot = await getDocs(collection(db, "presence"));
 
-        document.getElementById("mokaLive").innerHTML =
-          `🔴 Moka Caffè — ${data.moka || 0} persone ora`;
+  snapshot.forEach((item) => {
+    if (item.id === "night_live") {
+      const data = item.data();
 
-        document.getElementById("millesimoLive").innerHTML =
-          `🟠 Millesimo — ${data.millesimo || 0} persone ora`;
+      document.getElementById("mokaLive").innerHTML =
+        `🔴 Moka Caffè — ${data.moka || 0} persone ora`;
 
-        document.getElementById("cantuneraLive").innerHTML =
-          `🟢 Cantunera — ${data.cantunera || 0} persone ora`;
+      document.getElementById("millesimoLive").innerHTML =
+        `🟠 Millesimo — ${data.millesimo || 0} persone ora`;
 
-        document.getElementById("piazzaLive").innerHTML =
-          `🌊 Piazza — ${data.piazza || 0} persone ora`;
+      document.getElementById("cantuneraLive").innerHTML =
+        `🟢 Cantunera — ${data.cantunera || 0} persone ora`;
 
-        const totalOnline =
-          (data.moka || 0) +
-          (data.millesimo || 0) +
-          (data.cantunera || 0) +
-          (data.piazza || 0);
+      document.getElementById("piazzaLive").innerHTML =
+        `🌊 Piazza — ${data.piazza || 0} persone ora`;
 
-        document.getElementById("onlineUsers").innerHTML =
-          `👥 ${totalOnline} utenti online ora`;
-      }
-    });
-  }
+      const totalOnline =
+        (data.moka || 0) +
+        (data.millesimo || 0) +
+        (data.cantunera || 0) +
+        (data.piazza || 0);
 
-  async function loadRanking() {
-    const snapshot = await getDocs(collection(db, "votes"));
+      document.getElementById("onlineUsers").innerHTML =
+        `👥 ${totalOnline} utenti online ora`;
+    }
+  });
+}
 
-    snapshot.forEach((item) => {
-      if (item.id === "night_poll") {
-        const data = item.data();
+async function loadRanking() {
+  const snapshot = await getDocs(collection(db, "votes"));
 
-        const ranking = [
-          {
-            name: "Millesimo 👑",
-            votes: data.millesimo || 0
-          },
-          {
-            name: "Cantunera 🍸",
-            votes: data.cantunera || 0
-          },
-          {
-            name: "Moka Caffè 🎶",
-            votes: data.moka || 0
-          },
-          {
-            name: "Piazza 🌊",
-            votes: data.piazza || 0
-          }
-        ];
+  snapshot.forEach((item) => {
+    if (item.id === "night_poll") {
+      const data = item.data();
 
-        ranking.sort((a, b) => b.votes - a.votes);
+      const millesimo = data.millesimo || 0;
+      const cantunera = data.cantunera || 0;
+      const moka = data.moka || 0;
+      const piazza = data.piazza || 0;
 
-        const box = document.getElementById("liveRanking");
-        box.innerHTML = "";
+      const total =
+        millesimo + cantunera + moka + piazza || 1;
 
-        ranking.forEach((place, index) => {
-          box.innerHTML += `
-            <div class="status-item">
-              ${index + 1}. ${place.name}
-              <br><br>
-              ${place.votes} voti live
-            </div>
-          `;
-        });
+      const m1 = Math.round((millesimo / total) * 100);
+      const m2 = Math.round((cantunera / total) * 100);
+      const m3 = Math.round((moka / total) * 100);
+      const m4 = Math.round((piazza / total) * 100);
 
-        document.getElementById("hotPlace").innerHTML =
-          `🔥 Locale più caldo ora: ${ranking[0].name}`;
-      }
-    });
-  }
+      document.getElementById("millesimoPercent").innerHTML = m1 + "%";
+      document.getElementById("cantuneraPercent").innerHTML = m2 + "%";
+      document.getElementById("mokaPercent").innerHTML = m3 + "%";
+      document.getElementById("piazzaPercent").innerHTML = m4 + "%";
+
+      document.getElementById("millesimoBar").style.width = m1 + "%";
+      document.getElementById("cantuneraBar").style.width = m2 + "%";
+      document.getElementById("mokaBar").style.width = m3 + "%";
+      document.getElementById("piazzaBar").style.width = m4 + "%";
+
+      const ranking = [
+        { name: "Millesimo 👑", votes: millesimo },
+        { name: "Cantunera 🍸", votes: cantunera },
+        { name: "Moka Caffè 🎶", votes: moka },
+        { name: "Piazza 🌊", votes: piazza }
+      ];
+
+      ranking.sort((a, b) => b.votes - a.votes);
+
+      const box = document.getElementById("liveRanking");
+      box.innerHTML = "";
+
+      ranking.forEach((place, index) => {
+        box.innerHTML += `
+          <div class="status-item">
+            ${index + 1}. ${place.name}
+            <br><br>
+            ${place.votes} voti live
+          </div>
+        `;
+      });
+
+      document.getElementById("hotPlace").innerHTML =
+        `🔥 Locale più caldo ora: ${ranking[0].name}`;
+    }
+  });
+}
 
 async function loadComments() {
   const snapshot = await getDocs(collection(db, "comments"));
@@ -432,13 +597,14 @@ async function loadComments() {
   }
 }
 
-  window.sendComment = async function () {
+window.sendComment = async function () {
   const input = document.getElementById("commentInput");
   const text = input.value.trim();
 
   if (!text) return;
 
-  const username = localStorage.getItem("pl_username") || "Utente Live";
+  const username =
+    localStorage.getItem("pl_username") || "Utente Live";
 
   await addDoc(collection(db, "comments"), {
     text: text,
@@ -448,12 +614,61 @@ async function loadComments() {
 
   input.value = "";
   loadComments();
+  loadTopUsers();
 };
 
-  loadHype();
-  loadPresence();
-  loadRanking();
-  loadComments();
+async function loadTopUsers() {
+  const snapshot = await getDocs(collection(db, "comments"));
+  const users = {};
+
+  snapshot.forEach((item) => {
+    const data = item.data();
+    const username = data.username || "Utente Live";
+
+    if (!users[username]) {
+      users[username] = 0;
+    }
+
+    users[username]++;
+  });
+
+  const ranking = Object.entries(users)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+
+  const box = document.getElementById("topUsers");
+  box.innerHTML = "";
+
+  ranking.forEach((user, index) => {
+    let badge = "";
+
+    if (index === 0) {
+      badge = " 👑 TOP";
+    }
+
+    box.innerHTML += `
+      <div class="status-item">
+        ${index + 1}. ${user[0]}${badge}
+        <br><br>
+        ${user[1]} commenti
+      </div>
+    `;
+  });
+
+  if (box.innerHTML === "") {
+    box.innerHTML = `
+      <div class="status-item">
+        Nessun utente ancora 👀
+      </div>
+    `;
+  }
+}
+
+loadHype();
+loadPresence();
+loadRanking();
+loadComments();
+loadTopUsers();
 </script>
 
 </body>
