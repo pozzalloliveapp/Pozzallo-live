@@ -659,7 +659,7 @@ async function loadTopUsers() {
 
   const ranking = Object.entries(users)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
+    .slice(0, 10);
 
   const box = document.getElementById("topUsers");
   box.innerHTML = "";
@@ -668,7 +668,11 @@ async function loadTopUsers() {
     let badge = "";
 
     if (index === 0) {
-      badge = " 👑 TOP";
+      badge = " 👑 KING";
+    } else if (index <= 2) {
+      badge = " 🏆 TOP";
+    } else if (user[1] >= 10) {
+      badge = " 🔥 ACTIVE";
     }
 
     box.innerHTML += `
@@ -688,6 +692,7 @@ async function loadTopUsers() {
     `;
   }
 }
+  
 function checkAdmin() {
   const email = localStorage.getItem("pl_email");
 
