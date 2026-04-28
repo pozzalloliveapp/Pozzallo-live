@@ -412,6 +412,9 @@ onAuthStateChanged(auth, (user) => {
     const bio =
       localStorage.getItem("pl_bio") || "Nessuna bio";
     
+    const profilePhoto =
+  localStorage.getItem("pl_profile_photo");
+    
     const photo =
   localStorage.getItem("pl_photo") || "";
 
