@@ -244,7 +244,13 @@
         id="bioInput"
         placeholder="Scrivi la tua bio..."
       ></textarea>
-
+      <input
+        type="file"
+        id="profilePhotoInput"
+        accept="image/*"
+        onchange="saveProfilePhoto()"
+      />
+      
       <button class="btn" onclick="saveBio()">
         Salva Bio
       </button>
