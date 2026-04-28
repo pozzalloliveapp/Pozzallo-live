@@ -383,40 +383,63 @@
     });
   }
 
-  async function loadComments() {
-    const snapshot = await getDocs(collection(db, "comments"));
-    const box = document.getElementById("commentsBox");
+async function loadComments() {
+  const snapshot = await getDocs(collection(db, "comments"));
+  const box = document.getElementById("commentsBox");
 
-    box.innerHTML = "";
+  box.innerHTML = "";
 
-    snapshot.forEach((item) => {
-      const data = item.data();
+  snapshot.forEach((item) => {
+    const data = item.data();
 
-      box.innerHTML += `
-        <div style="margin-bottom:14px;">
+    const username = data.username || "Utente Live";
+
+    let badge = "";
+
+    if (username.toLowerCase().includes("vip")) {
+      badge = " 👑 VIP";
+    }
+
+    box.innerHTML += `
+      <div style="
+        margin-bottom:16px;
+        padding:14px;
+        border-radius:16px;
+        background: rgba(255,255,255,0.04);
+      ">
+        <div style="font-weight:700; margin-bottom:6px;">
+          👤 ${username}${badge}
+        </div>
+
+        <div>
           ${data.text}
         </div>
-      `;
-    });
+      </div>
+    `;
+  });
 
-    if (box.innerHTML === "") {
-      box.innerHTML = "Ancora nessun commento 👀";
-    }
+  if (box.innerHTML === "") {
+    box.innerHTML = "Ancora nessun commento 👀";
   }
+}
 
   window.sendComment = async function () {
-    const input = document.getElementById("commentInput");
-    const text = input.value.trim();
+  const input = document.getElementById("commentInput");
+  const text = input.value.trim();
 
-    if (!text) return;
+  if (!text) return;
 
-    await addDoc(collection(db, "comments"), {
-      text: text
-    });
+  const username = localStorage.getItem("pl_username") || "Utente Live";
 
-    input.value = "";
-    loadComments();
-  };
+  await addDoc(collection(db, "comments"), {
+    text: text,
+    username: username,
+    createdAt: Date.now()
+  });
+
+  input.value = "";
+  loadComments();
+};
 
   loadHype();
   loadPresence();
