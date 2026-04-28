@@ -446,6 +446,13 @@ window.addHype = async function () {
 };
 
 window.votePlace = async function(place) {
+  const alreadyVoted = localStorage.getItem("pl_voted_place");
+
+  if (alreadyVoted) {
+    alert("Hai già votato stasera 🗳️");
+    return;
+  }
+
   const snapshot = await getDocs(collection(db, "votes"));
 
   snapshot.forEach(async (item) => {
@@ -469,7 +476,10 @@ window.votePlace = async function(place) {
         await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
       }
 
+      localStorage.setItem("pl_voted_place", place);
+
       loadRanking();
+      alert("Voto registrato 🔥");
     }
   });
 };
@@ -502,6 +512,7 @@ window.setPresence = async function(place) {
     }
   });
 };
+  
   async function loadPresence() {
   const snapshot = await getDocs(collection(db, "presence"));
 
