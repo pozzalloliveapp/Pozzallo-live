@@ -407,6 +407,10 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("profileUsername").innerText = username;
     document.getElementById("profileEmail").innerText = user.email;
     document.getElementById("profileBio").innerText = bio;
+    if (photo) {
+  document.getElementById("avatarBox").innerHTML =
+    `<img src="${photo}" alt="Foto Profilo">`;
+    }
     document.getElementById("profileLevel").innerText = level;
     document.getElementById("profileComments").innerText = comments;
     document.getElementById("profilePresence").innerText = presence;
