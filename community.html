@@ -92,23 +92,8 @@
       height: 100%;
       border-radius: 20px;
       background: linear-gradient(90deg, #7c3aed, #3b82f6);
-    }
-
-    .quick-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .action-btn {
-      padding: 10px 16px;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
+      width: 0%;
+      transition: 0.3s;
     }
 
     .vote-btn {
@@ -321,7 +306,30 @@
     </div>
   </div>
 
+  <div class="section-title">
+    📍 Stato Live Locali
+  </div>
+
+  <div class="card status-card">
+    <div class="status-item" id="mokaLive">
+      🔴 Moka Caffè — caricamento...
+    </div>
+
+    <div class="status-item" id="millesimoLive">
+      🟠 Millesimo — caricamento...
+    </div>
+
+    <div class="status-item" id="cantuneraLive">
+      🟢 Cantunera — caricamento...
+    </div>
+
+    <div class="status-item" id="piazzaLive">
+      🌊 Piazza — caricamento...
+    </div>
+  </div>
+
 </div>
+
 <div class="bottom-nav">
   <a href="index.html">Home</a>
   <a href="locali.html">Locali</a>
@@ -329,6 +337,7 @@
   <a href="eventi.html">Eventi</a>
   <a href="profilo.html">Profilo</a>
 </div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -341,13 +350,12 @@
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
-    authDomain: "pozzallolive2026.firebaseapp.com",
-    projectId: "pozzallolive2026",
-    storageBucket: "pozzallolive2026.firebasestorage.app",
-    messagingSenderId: "435479334572",
-    appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
-    measurementId: "G-3EZX810ZSH"
+    apiKey: "YOUR_KEY",
+    authDomain: "YOUR_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -389,8 +397,7 @@
     const hypeBox = document.getElementById("hypeCount");
 
     snapshot.forEach((item) => {
-      const data = item.data();
-      hypeBox.innerHTML = `Hype totale: ${data.count}`;
+      hypeBox.innerHTML = `Hype totale: ${item.data().count || 0}`;
     });
   }
 
@@ -418,30 +425,21 @@
         const data = item.data();
 
         if (place === "Millesimo") {
-          await updateDoc(ref, {
-            millesimo: (data.millesimo || 0) + 1
-          });
+          await updateDoc(ref, { millesimo: (data.millesimo || 0) + 1 });
         }
 
         if (place === "Cantunera") {
-          await updateDoc(ref, {
-            cantunera: (data.cantunera || 0) + 1
-          });
+          await updateDoc(ref, { cantunera: (data.cantunera || 0) + 1 });
         }
 
         if (place === "Moka Caffè") {
-          await updateDoc(ref, {
-            moka: (data.moka || 0) + 1
-          });
+          await updateDoc(ref, { moka: (data.moka || 0) + 1 });
         }
 
         if (place === "Piazza") {
-          await updateDoc(ref, {
-            piazza: (data.piazza || 0) + 1
-          });
+          await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
         }
 
-        alert("Voto registrato con successo");
         loadVotes();
       }
     });
@@ -459,36 +457,23 @@
         const moka = data.moka || 0;
         const piazza = data.piazza || 0;
 
-        const total =
-          millesimo +
-          cantunera +
-          moka +
-          piazza;
-
+        const total = millesimo + cantunera + moka + piazza;
         if (total === 0) return;
 
-        document.getElementById("millesimoPercent").innerHTML =
-          Math.round((millesimo / total) * 100) + "%";
+        const m1 = Math.round((millesimo / total) * 100);
+        const m2 = Math.round((cantunera / total) * 100);
+        const m3 = Math.round((moka / total) * 100);
+        const m4 = Math.round((piazza / total) * 100);
 
-        document.getElementById("cantuneraPercent").innerHTML =
-          Math.round((cantunera / total) * 100) + "%";
+        document.getElementById("millesimoPercent").innerHTML = m1 + "%";
+        document.getElementById("cantuneraPercent").innerHTML = m2 + "%";
+        document.getElementById("mokaPercent").innerHTML = m3 + "%";
+        document.getElementById("piazzaPercent").innerHTML = m4 + "%";
 
-        document.getElementById("mokaPercent").innerHTML =
-          Math.round((moka / total) * 100) + "%";
-
-        document.getElementById("piazzaPercent").innerHTML =
-          Math.round((piazza / total) * 100) + "%";
-        document.getElementById("millesimoBar").style.width =
-  Math.round((millesimo / total) * 100) + "%";
-
-document.getElementById("cantuneraBar").style.width =
-  Math.round((cantunera / total) * 100) + "%";
-
-document.getElementById("mokaBar").style.width =
-  Math.round((moka / total) * 100) + "%";
-
-document.getElementById("piazzaBar").style.width =
-  Math.round((piazza / total) * 100) + "%";
+        document.getElementById("millesimoBar").style.width = m1 + "%";
+        document.getElementById("cantuneraBar").style.width = m2 + "%";
+        document.getElementById("mokaBar").style.width = m3 + "%";
+        document.getElementById("piazzaBar").style.width = m4 + "%";
       }
     });
   }
@@ -525,14 +510,37 @@ document.getElementById("piazzaBar").style.width =
           });
         }
 
-        alert("Presenza registrata");
+        loadPresence();
       }
     });
   };
 
+  async function loadPresence() {
+    const snapshot = await getDocs(collection(db, "presence"));
+
+    snapshot.forEach((item) => {
+      if (item.id === "night_live") {
+        const data = item.data();
+
+        document.getElementById("mokaLive").innerHTML =
+          `🔴 Moka Caffè — ${data.moka || 0} persone ora`;
+
+        document.getElementById("millesimoLive").innerHTML =
+          `🟠 Millesimo — ${data.millesimo || 0} persone ora`;
+
+        document.getElementById("cantuneraLive").innerHTML =
+          `🟢 Cantunera — ${data.cantunera || 0} persone ora`;
+
+        document.getElementById("piazzaLive").innerHTML =
+          `🌊 Piazza — ${data.piazza || 0} persone ora`;
+      }
+    });
+  }
+
   loadComments();
   loadHype();
   loadVotes();
+  loadPresence();
 </script>
 
 </body>
