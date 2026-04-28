@@ -717,19 +717,20 @@ if (now - lastCommentTime < 30000) {
   const photo =
     localStorage.getItem("pl_profile_photo") || "";
 
-  await addDoc(collection(db, "comments"), {
-    text: text,
-    username: username,
-    email: email,
-    photo: photo,
-    createdAt: Date.now()
-  });
+ await addDoc(collection(db, "comments"), {
+  text: text,
+  username: username,
+  email: email,
+  photo: photo,
+  createdAt: Date.now()
+});
 
-  input.value = "";
+localStorage.setItem("pl_last_comment_time", now);
 
-  loadComments();
-  loadTopUsers();
-};
+input.value = "";
+
+loadComments();
+loadTopUsers();
 
 async function loadTopUsers() {
   const snapshot = await getDocs(collection(db, "comments"));
