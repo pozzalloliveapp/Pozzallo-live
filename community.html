@@ -775,7 +775,12 @@ window.sendAdminAlert = async function () {
     createdAt: Date.now()
   });
 
-  async function loadNotifications() {
+  loadNotifications();
+
+  alert("📢 Notifica inviata!");
+};
+
+async function loadNotifications() {
   const snapshot = await getDocs(collection(db, "notifications"));
   const box = document.getElementById("liveNotifications");
 
@@ -799,10 +804,7 @@ window.sendAdminAlert = async function () {
   if (box.innerHTML === "") {
     box.innerHTML = "Nessuna notifica live al momento 👀";
   }
-  }
-
-  alert("📢 Notifica inviata!");
-};
+}
 
 checkAdmin();
   
