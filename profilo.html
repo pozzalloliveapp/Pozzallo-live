@@ -167,68 +167,34 @@
   </div>
 
   <div class="card" id="authBox">
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
 
-    <input
-      type="text"
-      id="username"
-      placeholder="Username"
-    />
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Email"
-    />
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-    />
-
-    <button class="btn" onclick="registerUser()">
-      Registrati
-    </button>
-
-    <button class="btn" onclick="loginUser()">
-      Accedi
-    </button>
-
+    <button class="btn" onclick="registerUser()">Registrati</button>
+    <button class="btn" onclick="loginUser()">Accedi</button>
   </div>
 
-  <div
-    class="card"
-    id="profileBox"
-    style="display:none;"
-  >
-
+  <div class="card" id="profileBox" style="display:none;">
     <div class="profile-box">
 
-      <div class="avatar" id="avatarBox">
-        👤
-      </div>
-     <input
-       type="text"
-       id="photoInput"
-       placeholder="Incolla URL foto profilo..."
-     />
+      <div class="avatar" id="avatarBox">👤</div>
 
-<button class="btn" onclick="saveProfilePhoto()">
-  Salva Foto Profilo
-</button>
-      
+      <input
+        type="file"
+        id="profilePhotoInput"
+        accept="image/*"
+        onchange="saveProfilePhoto()"
+      />
+
       <div>
-        <strong id="profileUsername">
-          Username
-        </strong>
+        <strong id="profileUsername">Username</strong>
       </div>
 
-      <div id="profileEmail">
-        email@email.com
-      </div>
+      <div id="profileEmail">email@email.com</div>
 
       <div class="badge" id="profileBadge">
-        👑 VIP MEMBER
+        🔥 COMMUNITY MEMBER
       </div>
 
       <div class="stats">
@@ -244,23 +210,11 @@
         id="bioInput"
         placeholder="Scrivi la tua bio..."
       ></textarea>
-      <input
-        type="file"
-        id="profilePhotoInput"
-        accept="image/*"
-        onchange="saveProfilePhoto()"
-      />
-      
-      <button class="btn" onclick="saveBio()">
-        Salva Bio
-      </button>
 
-      <button class="btn" onclick="logoutUser()">
-        Esci
-      </button>
+      <button class="btn" onclick="saveBio()">Salva Bio</button>
+      <button class="btn" onclick="logoutUser()">Esci</button>
 
     </div>
-
   </div>
 
 </div>
@@ -275,7 +229,6 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -297,6 +250,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+const vipUsers = [
+  "nomeutente1",
+  "nomeutente2",
+  "nomeutente3"
+];
+
+const verifiedUsers = [
+  "utenteverificato1",
+  "utenteverificato2"
+];
+
 window.registerUser = async function () {
   const username = document.getElementById("username").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -312,14 +276,14 @@ window.registerUser = async function () {
     return;
   }
 
-  try {const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-localStorage.setItem("pl_username", username);
-localStorage.setItem("pl_email", email);
-localStorage.setItem("pl_uid", userCredential.user.uid);
+    localStorage.setItem("pl_username", username);
+    localStorage.setItem("pl_email", email);
+    localStorage.setItem("pl_uid", userCredential.user.uid);
 
-alert("Registrazione completata ✅");
-
+    alert("Registrazione completata ✅");
   } catch (error) {
     alert(error.message);
   }
@@ -332,11 +296,10 @@ window.loginUser = async function () {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-localStorage.setItem("pl_email", email);
-localStorage.setItem("pl_uid", userCredential.user.uid);
+    localStorage.setItem("pl_email", email);
+    localStorage.setItem("pl_uid", userCredential.user.uid);
 
-alert("Accesso effettuato ✅");
-
+    alert("Accesso effettuato ✅");
   } catch (error) {
     alert(error.message);
   }
@@ -351,22 +314,6 @@ window.logoutUser = async function () {
 };
 
 window.saveBio = function () {
-  window.saveProfilePhoto = function () {
-  const photo = document.getElementById("photoInput").value.trim();
-
-  if (!photo) {
-    alert("Inserisci URL foto");
-    return;
-  }
-
-  localStorage.setItem("pl_photo", photo);
-
-  document.getElementById("avatarBox").innerHTML =
-    `<img src="${photo}" alt="Foto Profilo">`;
-
-  alert("Foto profilo salvata ✅");
-};
-  
   const bio = document.getElementById("bioInput").value.trim();
 
   localStorage.setItem("pl_bio", bio);
@@ -376,6 +323,7 @@ window.saveBio = function () {
 
   alert("Bio salvata ✅");
 };
+
 window.saveProfilePhoto = function () {
   const input = document.getElementById("profilePhotoInput");
   const file = input.files[0];
@@ -397,7 +345,7 @@ window.saveProfilePhoto = function () {
 
   reader.readAsDataURL(file);
 };
-  
+
 onAuthStateChanged(auth, (user) => {
   const authBox = document.getElementById("authBox");
   const profileBox = document.getElementById("profileBox");
@@ -406,93 +354,49 @@ onAuthStateChanged(auth, (user) => {
     authBox.style.display = "none";
     profileBox.style.display = "block";
 
-    const username =
-      localStorage.getItem("pl_username") || "Utente Live";
-
-    const bio =
-      localStorage.getItem("pl_bio") || "Nessuna bio";
-    
-    const profilePhoto =
-  localStorage.getItem("pl_profile_photo");
-    
-    const photo =
-  localStorage.getItem("pl_photo") || "";
-
-    const comments =
-      localStorage.getItem("pl_comments") || "0";
-
-    const presence =
-      localStorage.getItem("pl_presence") || "0";
+    const username = localStorage.getItem("pl_username") || "Utente Live";
+    const bio = localStorage.getItem("pl_bio") || "Nessuna bio";
+    const comments = localStorage.getItem("pl_comments") || "0";
+    const presence = localStorage.getItem("pl_presence") || "0";
+    const profilePhoto = localStorage.getItem("pl_profile_photo");
 
     let level = "Lv.1";
 
-    if (parseInt(comments) >= 10) {
-      level = "Lv.2";
-    }
-
-    if (parseInt(comments) >= 25) {
-      level = "Lv.3";
-    }
+    if (parseInt(comments) >= 10) level = "Lv.2";
+    if (parseInt(comments) >= 25) level = "Lv.3";
 
     document.getElementById("profileUsername").innerText = username;
     document.getElementById("profileEmail").innerText = user.email;
     document.getElementById("profileBio").innerText = bio;
-    if (profilePhoto) {
-  document.getElementById("avatarBox").innerHTML =
-    `<img src="${profilePhoto}" alt="Profile Photo">`;
-    }
-    
-    if (photo) {
-  document.getElementById("avatarBox").innerHTML =
-    `<img src="${photo}" alt="Foto Profilo">`;
-    }
     document.getElementById("profileLevel").innerText = level;
     document.getElementById("profileComments").innerText = comments;
     document.getElementById("profilePresence").innerText = presence;
 
-    if (user.email === "giovanniagosta7@gmail.com") {
-  document.getElementById("profileBadge").innerHTML =
-    "🛡️ FOUNDER • SUPER ADMIN";
-
-  document.getElementById("profileLevel").innerText =
-    "MAX LEVEL";
-
-const vipUsers = [
-  "nomeutente1",
-  "nomeutente2",
-  "nomeutente3"
-];
-
-const verifiedUsers = [
-  "utenteverificato1",
-  "utenteverificato2"
-];
-
-if (user.email === "giovanniagosta7@gmail.com") {
-  document.getElementById("profileBadge").innerHTML =
-    "🛡️ FOUNDER • SUPER ADMIN";
-
-  document.getElementById("profileLevel").innerText =
-    "MAX LEVEL";
-
-} else if (
-  vipUsers.includes(username.toLowerCase())
-) {
-  document.getElementById("profileBadge").innerHTML =
-    "👑 VIP MEMBER";
-
-} else if (
-  verifiedUsers.includes(username.toLowerCase())
-) {
-  document.getElementById("profileBadge").innerHTML =
-    "✔️ VERIFIED USER";
-
-} else {
-  document.getElementById("profileBadge").innerHTML =
-    "🔥 COMMUNITY MEMBER";
-}
-
+    if (profilePhoto) {
+      document.getElementById("avatarBox").innerHTML =
+        `<img src="${profilePhoto}" alt="Profile Photo">`;
     }
+
+    if (user.email === "giovanniagosta7@gmail.com") {
+      document.getElementById("profileBadge").innerHTML =
+        "🛡️ FOUNDER • SUPER ADMIN";
+
+      document.getElementById("profileLevel").innerText =
+        "MAX LEVEL";
+
+    } else if (vipUsers.includes(username.toLowerCase())) {
+      document.getElementById("profileBadge").innerHTML =
+        "👑 VIP MEMBER";
+
+    } else if (verifiedUsers.includes(username.toLowerCase())) {
+      document.getElementById("profileBadge").innerHTML =
+        "✔️ VERIFIED USER";
+
+    } else {
+      document.getElementById("profileBadge").innerHTML =
+        "🔥 COMMUNITY MEMBER";
+    }
+
   } else {
     authBox.style.display = "block";
     profileBox.style.display = "none";
