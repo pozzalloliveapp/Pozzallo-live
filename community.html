@@ -775,7 +775,31 @@ window.sendAdminAlert = async function () {
     createdAt: Date.now()
   });
 
-  loadNotifications();
+  async function loadNotifications() {
+  const snapshot = await getDocs(collection(db, "notifications"));
+  const box = document.getElementById("liveNotifications");
+
+  box.innerHTML = "";
+
+  snapshot.forEach((item) => {
+    const data = item.data();
+
+    box.innerHTML += `
+      <div style="
+        margin-bottom:14px;
+        padding:14px;
+        border-radius:16px;
+        background: rgba(255,255,255,0.04);
+      ">
+        📢 ${data.text}
+      </div>
+    `;
+  });
+
+  if (box.innerHTML === "") {
+    box.innerHTML = "Nessuna notifica live al momento 👀";
+  }
+  }
 
   alert("📢 Notifica inviata!");
 };
