@@ -376,7 +376,28 @@ window.saveBio = function () {
 
   alert("Bio salvata ✅");
 };
+window.saveProfilePhoto = function () {
+  const input = document.getElementById("profilePhotoInput");
+  const file = input.files[0];
 
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    const imageBase64 = e.target.result;
+
+    localStorage.setItem("pl_profile_photo", imageBase64);
+
+    document.getElementById("avatarBox").innerHTML =
+      `<img src="${imageBase64}" alt="Profile Photo">`;
+
+    alert("Foto profilo salvata ✅");
+  };
+
+  reader.readAsDataURL(file);
+};
+  
 onAuthStateChanged(auth, (user) => {
   const authBox = document.getElementById("authBox");
   const profileBox = document.getElementById("profileBox");
