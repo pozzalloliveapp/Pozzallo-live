@@ -297,15 +297,14 @@ window.registerUser = async function () {
     return;
   }
 
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
+  try {const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    localStorage.setItem("pl_username", username);
-    localStorage.setItem("pl_bio", "");
-    localStorage.setItem("pl_comments", "0");
-    localStorage.setItem("pl_presence", "0");
+localStorage.setItem("pl_username", username);
+localStorage.setItem("pl_email", email);
+localStorage.setItem("pl_uid", userCredential.user.uid);
 
-    alert("Registrazione completata ✅");
+alert("Registrazione completata ✅");
+
   } catch (error) {
     alert(error.message);
   }
