@@ -696,6 +696,15 @@ async function loadComments() {
 window.sendComment = async function () {
   const input = document.getElementById("commentInput");
   const text = input.value.trim();
+  const lastCommentTime =
+  localStorage.getItem("pl_last_comment_time") || 0;
+
+const now = Date.now();
+
+if (now - lastCommentTime < 30000) {
+  alert("Aspetta qualche secondo prima di commentare 💬");
+  return;
+}
 
   if (!text) return;
 
