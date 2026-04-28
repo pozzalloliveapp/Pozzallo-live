@@ -68,58 +68,17 @@
       line-height: 1.5;
     }
 
-    .poll-option {
-      margin-bottom: 16px;
-    }
-
-    .poll-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .bar {
-      width: 100%;
-      height: 10px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: 20px;
-      background: linear-gradient(90deg, #7c3aed, #3b82f6);
-      width: 0%;
-      transition: 0.3s;
-    }
-
     .vote-btn {
       width: 100%;
       padding: 14px;
       margin-bottom: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: none;
       border-radius: 16px;
-      background: rgba(255,255,255,0.04);
+      background: linear-gradient(90deg, #7c3aed, #3b82f6);
       color: white;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-    }
-
-    .vote-btn:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    .comment-box {
-      margin-top: 20px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 18px;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 1.7;
     }
 
     .status-card {
@@ -136,6 +95,44 @@
       line-height: 1.6;
     }
 
+    .badge-hot {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(124, 58, 237, 0.18);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .online-box {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .comment-box {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      color: white;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -146,7 +143,6 @@
       display: flex;
       justify-content: space-around;
       padding: 18px 0;
-      backdrop-filter: blur(10px);
     }
 
     .bottom-nav a {
@@ -177,138 +173,61 @@
     Vota, commenta e scopri dove si muove la serata.
   </div>
 
-  <div class="section-title">
-    🔥 Dove vai stasera?
-  </div>
+  <div class="section-title">🔥 Dove vai stasera?</div>
 
   <div class="card">
-    <div class="question">
-      Quanto hype c'è per stasera?
-    </div>
+    <div class="question">Quanto hype c'è per stasera?</div>
 
-    <div style="text-align:center; margin-top:20px;">
-      <button onclick="addHype()" style="
-        padding:16px 28px;
-        border:none;
-        border-radius:18px;
-        background: linear-gradient(90deg, #7c3aed, #3b82f6);
-        color:white;
-        font-size:16px;
-        font-weight:700;
-        cursor:pointer;
-      ">
-        🔥 Alza l’Hype
-      </button>
+    <button onclick="addHype()" class="vote-btn">
+      🔥 Alza l’Hype
+    </button>
 
-      <div id="hypeCount" style="
-        margin-top:18px;
-        font-size:20px;
-        font-weight:800;
-      ">
-        Caricamento hype...
-      </div>
+    <div id="hypeCount" class="online-box">
+      Caricamento hype...
     </div>
   </div>
+
+  <div class="section-title">👥 Utenti Online Ora</div>
 
   <div class="card">
-    <div class="question">
-      Sabato sera — chi vince?
-    </div>
-
-    <div class="poll-option">
-      <div class="poll-label">
-        <span>Millesimo 👑</span>
-        <span id="millesimoPercent">...</span>
-      </div>
-      <div class="bar">
-        <div class="fill" id="millesimoBar"></div>
-      </div>
-    </div>
-
-    <div class="poll-option">
-      <div class="poll-label">
-        <span>Cantunera 🍸</span>
-        <span id="cantuneraPercent">...</span>
-      </div>
-      <div class="bar">
-        <div class="fill" id="cantuneraBar"></div>
-      </div>
-    </div>
-
-    <div class="poll-option">
-      <div class="poll-label">
-        <span>Moka Caffè 🎶</span>
-        <span id="mokaPercent">...</span>
-      </div>
-      <div class="bar">
-        <div class="fill" id="mokaBar"></div>
-      </div>
-    </div>
-
-    <div class="poll-option">
-      <div class="poll-label">
-        <span>Piazza 🌊</span>
-        <span id="piazzaPercent">...</span>
-      </div>
-      <div class="bar">
-        <div class="fill" id="piazzaBar"></div>
-      </div>
-    </div>
-
-    <div style="margin-top:24px;">
-      <button onclick="votePlace('Millesimo')" class="vote-btn">Vota Millesimo</button>
-      <button onclick="votePlace('Cantunera')" class="vote-btn">Vota Cantunera</button>
-      <button onclick="votePlace('Moka Caffè')" class="vote-btn">Vota Moka Caffè</button>
-      <button onclick="votePlace('Piazza')" class="vote-btn">Vota Piazza</button>
-    </div>
-
-    <div style="margin-top:24px;">
-      <button onclick="setPresence('Millesimo')" class="vote-btn">Sono al Millesimo</button>
-      <button onclick="setPresence('Cantunera')" class="vote-btn">Sono alla Cantunera</button>
-      <button onclick="setPresence('Moka Caffè')" class="vote-btn">Sono al Moka Caffè</button>
-      <button onclick="setPresence('Piazza')" class="vote-btn">Sono in Piazza</button>
-    </div>
-
-    <div style="margin-top:20px; margin-bottom:18px;">
-      <input
-        type="text"
-        id="commentInput"
-        placeholder="Scrivi un commento..."
-        style="
-          width:100%;
-          padding:14px;
-          border:none;
-          border-radius:16px;
-          background: rgba(255,255,255,0.06);
-          color:white;
-          font-size:14px;
-          outline:none;
-        "
-      >
-
-      <button onclick="sendComment()" style="
-        width:100%;
-        margin-top:12px;
-        padding:14px;
-        border:none;
-        border-radius:16px;
-        background: linear-gradient(90deg, #7c3aed, #3b82f6);
-        color:white;
-        font-weight:700;
-        font-size:15px;
-      ">
-        Pubblica commento 🚀
-      </button>
-    </div>
-
-    <div class="comment-box" id="commentsBox">
-      Caricamento commenti live...
+    <div id="onlineUsers" class="online-box">
+      Caricamento utenti online...
     </div>
   </div>
 
-  <div class="section-title">
-    📍 Stato Live Locali
+  <div class="section-title">👑 Classifica Live della Notte</div>
+
+  <div class="card">
+    <div id="liveRanking">
+      <div class="status-item">
+        Caricamento classifica live...
+      </div>
+    </div>
+
+    <div id="hotPlace" class="badge-hot">
+      Caricamento locale più caldo...
+    </div>
   </div>
+
+  <div class="section-title">💬 Commenti Live</div>
+
+  <div class="card">
+    <input
+      type="text"
+      id="commentInput"
+      placeholder="Scrivi un commento..."
+    >
+
+    <button onclick="sendComment()" class="vote-btn">
+      Pubblica commento 🚀
+    </button>
+
+    <div id="commentsBox" class="comment-box">
+      Caricamento commenti...
+    </div>
+  </div>
+
+  <div class="section-title">📍 Stato Live Locali</div>
 
   <div class="card status-card">
     <div class="status-item" id="mokaLive">
@@ -340,6 +259,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
   import {
     getFirestore,
     collection,
@@ -349,56 +269,25 @@
     doc
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
-  authDomain: "pozzallolive2026.firebaseapp.com",
-  projectId: "pozzallolive2026",
-  storageBucket: "pozzallolive2026.firebasestorage.app",
-  messagingSenderId: "435479334572",
-  appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
-  measurementId: "G-3EZX810ZSH"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCchq77rBl42Ra4yCzMt_g_TjbHNrOqYyE",
+    authDomain: "pozzallolive2026.firebaseapp.com",
+    projectId: "pozzallolive2026",
+    storageBucket: "pozzallolive2026.firebasestorage.app",
+    messagingSenderId: "435479334572",
+    appId: "1:435479334572:web:2fa12cc37bfab0af3ad909",
+    measurementId: "G-3EZX810ZSH"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  async function loadComments() {
-    const snapshot = await getDocs(collection(db, "comments"));
-    const commentsBox = document.getElementById("commentsBox");
-
-    commentsBox.innerHTML = "";
-
-    snapshot.forEach((item) => {
-      const data = item.data();
-
-      commentsBox.innerHTML += `
-        <div style="margin-bottom:14px;">
-          ${data.text}
-        </div>
-      `;
-    });
-  }
-
-  window.sendComment = async function () {
-    const input = document.getElementById("commentInput");
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    await addDoc(collection(db, "comments"), {
-      text: text
-    });
-
-    input.value = "";
-    loadComments();
-  };
-
   async function loadHype() {
     const snapshot = await getDocs(collection(db, "hype"));
-    const hypeBox = document.getElementById("hypeCount");
+    const box = document.getElementById("hypeCount");
 
     snapshot.forEach((item) => {
-      hypeBox.innerHTML = `Hype totale: ${item.data().count || 0}`;
+      box.innerHTML = `🔥 Hype totale: ${item.data().count || 0}`;
     });
   }
 
@@ -417,109 +306,9 @@ const firebaseConfig = {
     loadHype();
   };
 
-  window.votePlace = async function (place) {
-    const snapshot = await getDocs(collection(db, "votes"));
-
-    snapshot.forEach(async (item) => {
-      if (item.id === "night_poll") {
-        const ref = doc(db, "votes", item.id);
-        const data = item.data();
-
-        if (place === "Millesimo") {
-          await updateDoc(ref, { millesimo: (data.millesimo || 0) + 1 });
-        }
-
-        if (place === "Cantunera") {
-          await updateDoc(ref, { cantunera: (data.cantunera || 0) + 1 });
-        }
-
-        if (place === "Moka Caffè") {
-          await updateDoc(ref, { moka: (data.moka || 0) + 1 });
-        }
-
-        if (place === "Piazza") {
-          await updateDoc(ref, { piazza: (data.piazza || 0) + 1 });
-        }
-
-        loadVotes();
-      }
-    });
-  };
-
-  async function loadVotes() {
-    const snapshot = await getDocs(collection(db, "votes"));
-
-    snapshot.forEach((item) => {
-      if (item.id === "night_poll") {
-        const data = item.data();
-
-        const millesimo = data.millesimo || 0;
-        const cantunera = data.cantunera || 0;
-        const moka = data.moka || 0;
-        const piazza = data.piazza || 0;
-
-        const total = millesimo + cantunera + moka + piazza;
-        if (total === 0) return;
-
-        const m1 = Math.round((millesimo / total) * 100);
-        const m2 = Math.round((cantunera / total) * 100);
-        const m3 = Math.round((moka / total) * 100);
-        const m4 = Math.round((piazza / total) * 100);
-
-        document.getElementById("millesimoPercent").innerHTML = m1 + "%";
-        document.getElementById("cantuneraPercent").innerHTML = m2 + "%";
-        document.getElementById("mokaPercent").innerHTML = m3 + "%";
-        document.getElementById("piazzaPercent").innerHTML = m4 + "%";
-
-        document.getElementById("millesimoBar").style.width = m1 + "%";
-        document.getElementById("cantuneraBar").style.width = m2 + "%";
-        document.getElementById("mokaBar").style.width = m3 + "%";
-        document.getElementById("piazzaBar").style.width = m4 + "%";
-      }
-    });
-  }
-
-  window.setPresence = async function (place) {
-    const snapshot = await getDocs(collection(db, "presence"));
-
-    snapshot.forEach(async (item) => {
-      if (item.id === "night_live") {
-        const ref = doc(db, "presence", item.id);
-        const data = item.data();
-
-        if (place === "Millesimo") {
-          await updateDoc(ref, {
-            millesimo: (data.millesimo || 0) + 1
-          });
-        }
-
-        if (place === "Cantunera") {
-          await updateDoc(ref, {
-            cantunera: (data.cantunera || 0) + 1
-          });
-        }
-
-        if (place === "Moka Caffè") {
-          await updateDoc(ref, {
-            moka: (data.moka || 0) + 1
-          });
-        }
-
-        if (place === "Piazza") {
-          await updateDoc(ref, {
-            piazza: (data.piazza || 0) + 1
-          });
-        }
-
-        loadPresence();
-      }
-    });
-  };
-
   async function loadPresence() {
     const snapshot = await getDocs(collection(db, "presence"));
-
-    snapshot.forEach((item) => {
+        snapshot.forEach((item) => {
       if (item.id === "night_live") {
         const data = item.data();
 
@@ -534,14 +323,105 @@ const firebaseConfig = {
 
         document.getElementById("piazzaLive").innerHTML =
           `🌊 Piazza — ${data.piazza || 0} persone ora`;
+
+        const totalOnline =
+          (data.moka || 0) +
+          (data.millesimo || 0) +
+          (data.cantunera || 0) +
+          (data.piazza || 0);
+
+        document.getElementById("onlineUsers").innerHTML =
+          `👥 ${totalOnline} utenti online ora`;
       }
     });
   }
 
-  loadComments();
+  async function loadRanking() {
+    const snapshot = await getDocs(collection(db, "votes"));
+
+    snapshot.forEach((item) => {
+      if (item.id === "night_poll") {
+        const data = item.data();
+
+        const ranking = [
+          {
+            name: "Millesimo 👑",
+            votes: data.millesimo || 0
+          },
+          {
+            name: "Cantunera 🍸",
+            votes: data.cantunera || 0
+          },
+          {
+            name: "Moka Caffè 🎶",
+            votes: data.moka || 0
+          },
+          {
+            name: "Piazza 🌊",
+            votes: data.piazza || 0
+          }
+        ];
+
+        ranking.sort((a, b) => b.votes - a.votes);
+
+        const box = document.getElementById("liveRanking");
+        box.innerHTML = "";
+
+        ranking.forEach((place, index) => {
+          box.innerHTML += `
+            <div class="status-item">
+              ${index + 1}. ${place.name}
+              <br><br>
+              ${place.votes} voti live
+            </div>
+          `;
+        });
+
+        document.getElementById("hotPlace").innerHTML =
+          `🔥 Locale più caldo ora: ${ranking[0].name}`;
+      }
+    });
+  }
+
+  async function loadComments() {
+    const snapshot = await getDocs(collection(db, "comments"));
+    const box = document.getElementById("commentsBox");
+
+    box.innerHTML = "";
+
+    snapshot.forEach((item) => {
+      const data = item.data();
+
+      box.innerHTML += `
+        <div style="margin-bottom:14px;">
+          ${data.text}
+        </div>
+      `;
+    });
+
+    if (box.innerHTML === "") {
+      box.innerHTML = "Ancora nessun commento 👀";
+    }
+  }
+
+  window.sendComment = async function () {
+    const input = document.getElementById("commentInput");
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    await addDoc(collection(db, "comments"), {
+      text: text
+    });
+
+    input.value = "";
+    loadComments();
+  };
+
   loadHype();
-  loadVotes();
   loadPresence();
+  loadRanking();
+  loadComments();
 </script>
 
 </body>
