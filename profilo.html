@@ -437,6 +437,11 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("profileUsername").innerText = username;
     document.getElementById("profileEmail").innerText = user.email;
     document.getElementById("profileBio").innerText = bio;
+    if (profilePhoto) {
+  document.getElementById("avatarBox").innerHTML =
+    `<img src="${profilePhoto}" alt="Profile Photo">`;
+    }
+    
     if (photo) {
   document.getElementById("avatarBox").innerHTML =
     `<img src="${photo}" alt="Foto Profilo">`;
