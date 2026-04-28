@@ -422,14 +422,41 @@ onAuthStateChanged(auth, (user) => {
   document.getElementById("profileLevel").innerText =
     "MAX LEVEL";
 
-} else if (username.toLowerCase().includes("vip")) {
+const vipUsers = [
+  "nomeutente1",
+  "nomeutente2",
+  "nomeutente3"
+];
+
+const verifiedUsers = [
+  "utenteverificato1",
+  "utenteverificato2"
+];
+
+if (user.email === "giovanniagosta7@gmail.com") {
+  document.getElementById("profileBadge").innerHTML =
+    "🛡️ FOUNDER • SUPER ADMIN";
+
+  document.getElementById("profileLevel").innerText =
+    "MAX LEVEL";
+
+} else if (
+  vipUsers.includes(username.toLowerCase())
+) {
   document.getElementById("profileBadge").innerHTML =
     "👑 VIP MEMBER";
+
+} else if (
+  verifiedUsers.includes(username.toLowerCase())
+) {
+  document.getElementById("profileBadge").innerHTML =
+    "✔️ VERIFIED USER";
 
 } else {
   document.getElementById("profileBadge").innerHTML =
     "🔥 COMMUNITY MEMBER";
 }
+
     }
   } else {
     authBox.style.display = "block";
