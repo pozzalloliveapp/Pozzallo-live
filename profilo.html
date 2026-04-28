@@ -345,6 +345,22 @@ window.logoutUser = async function () {
 };
 
 window.saveBio = function () {
+  window.saveProfilePhoto = function () {
+  const photo = document.getElementById("photoInput").value.trim();
+
+  if (!photo) {
+    alert("Inserisci URL foto");
+    return;
+  }
+
+  localStorage.setItem("pl_photo", photo);
+
+  document.getElementById("avatarBox").innerHTML =
+    `<img src="${photo}" alt="Foto Profilo">`;
+
+  alert("Foto profilo salvata ✅");
+};
+  
   const bio = document.getElementById("bioInput").value.trim();
 
   localStorage.setItem("pl_bio", bio);
