@@ -328,6 +328,10 @@ alert("Accesso effettuato ✅");
 };
 
 window.logoutUser = async function () {
+  localStorage.removeItem("pl_username");
+  localStorage.removeItem("pl_email");
+  localStorage.removeItem("pl_uid");
+
   await signOut(auth);
 };
 
