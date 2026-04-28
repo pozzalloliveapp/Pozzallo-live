@@ -383,12 +383,21 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("profileComments").innerText = comments;
     document.getElementById("profilePresence").innerText = presence;
 
-    if (username.toLowerCase().includes("vip")) {
-      document.getElementById("profileBadge").innerHTML =
-        "👑 VIP MEMBER";
-    } else {
-      document.getElementById("profileBadge").innerHTML =
-        "🔥 COMMUNITY MEMBER";
+    if (user.email === "giovanniagosta7@gmail.com") {
+  document.getElementById("profileBadge").innerHTML =
+    "🛡️ FOUNDER • SUPER ADMIN";
+
+  document.getElementById("profileLevel").innerText =
+    "MAX LEVEL";
+
+} else if (username.toLowerCase().includes("vip")) {
+  document.getElementById("profileBadge").innerHTML =
+    "👑 VIP MEMBER";
+
+} else {
+  document.getElementById("profileBadge").innerHTML =
+    "🔥 COMMUNITY MEMBER";
+}
     }
   } else {
     authBox.style.display = "block";
