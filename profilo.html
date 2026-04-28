@@ -181,13 +181,19 @@
   const auth = getAuth(app);
 
   window.registerUser = async function () {
+    const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
+    if (!username) {
+      alert("Inserisci uno username");
+      return;
+    }
     const password = document.getElementById("password").value.trim();
 
     if (!email || !password) return;
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("pl_username", username);
       alert("Registrazione completata ✅");
     } catch (error) {
       alert(error.message);
@@ -219,7 +225,7 @@
       profileBox.style.display = "block";
 
       document.getElementById("profileUsername").innerText =
-        document.getElementById("username").value || "Utente Live";
+        localStorage.getItem("pl_username") || "Utente Live";
 
       document.getElementById("profileEmail").innerText = user.email;
     } else {
