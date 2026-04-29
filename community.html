@@ -748,12 +748,25 @@ if (now - lastCommentTime < 30000) {
   const photo =
     localStorage.getItem("pl_profile_photo") || "";
 
- await addDoc(collection(db, "comments"), {
+const existingComments = await getDocs(collection(db, "comments"));
+
+let userCommentsCount = 0;
+
+existingComments.forEach((item) => {
+  const data = item.data();
+
+  if ((data.email || "") === email) {
+    userCommentsCount++;
+  }
+});
+
+await addDoc(collection(db, "comments"), {
   text: text,
   username: username,
   email: email,
   photo: photo,
-  createdAt: Date.now()
+  createdAt: Date.now(),
+  commentCount: userCommentsCount + 1
 });
 
 localStorage.setItem("pl_last_comment_time", now);
