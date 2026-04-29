@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Area Proprietario - Pozzallo Live</title>
 
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #050816;
+  color: white;
+}
+
+.page {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 20px 100px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.title span {
+  color: #7c3aed;
+}
+
+.subtitle {
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  margin-bottom: 14px;
+  outline: none;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(90deg,#7c3aed,#3b82f6);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="title">
+AREA <span>PROPRIETARIO</span>
+</div>
+
+<div class="subtitle">
+Gestisci il tuo locale live su Pozzallo Live.
+Aggiorna eventi, foto e comunicazioni.
+</div>
+
+<div class="card">
+
+<div class="section-title">
+🎉 Aggiorna Evento Live
+</div>
+
+<input
+type="text"
+placeholder="Es: Sabato White Party con DJ Set"
+>
+
+<textarea
+rows="4"
+placeholder="Descrizione evento..."
+></textarea>
+
+<button>
+Salva Evento Live
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+📸 Carica Foto Locale
+</div>
+
+<input
+type="file"
+>
+
+<button>
+Carica Foto
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+📢 Notifica ai Clienti
+</div>
+
+<input
+type="text"
+placeholder="Es: Tavoli quasi terminati 🔥"
+>
+
+<button>
+Invia Notifica
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
