@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Millesimo • Pozzallo Live</title>
+
+<link rel="icon" type="image/png" href="Logo_1.png">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #050816;
+  color: white;
+}
+
+.page {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 20px 120px;
+}
+
+.hero {
+  background: rgba(255,255,255,0.04);
+  border-radius: 26px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.place-title {
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.place-subtitle {
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.live-status {
+  margin-top: 18px;
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(59,130,246,0.15);
+  border: 1px solid rgba(59,130,246,0.25);
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 28px 0 18px;
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.info {
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.photo {
+  height: 220px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5,8,22,0.96);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-around;
+  padding: 18px 0;
+}
+
+.bottom-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bottom-nav a.active {
+  color: #3b82f6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="hero">
+  <div class="place-title">
+    Millesimo 👑
+  </div>
+
+  <div class="place-subtitle">
+    Il cuore del venerdì sera.
+    Se Pozzallo si muove, qui succede qualcosa.
+  </div>
+
+  <div class="live-status">
+    🔥 LIVE NOW — Molto Vivo
+  </div>
+</div>
+
+<div class="section-title">
+📍 Info Locale
+</div>
+
+<div class="card">
+  <div class="info">
+    📍 Centro Pozzallo<br>
+    🕘 Orario top: 23:00 – 02:00<br>
+    🎧 Weekend Main Spot<br>
+    🍸 Cocktail • Tavoli • Musica Live
+  </div>
+</div>
+
+<div class="section-title">
+📸 Foto Live della Notte
+</div>
+
+<div class="card">
+
+  <div class="gallery">
+
+    <div class="photo">
+      Foto live del locale qui
+    </div>
+
+    <div class="photo">
+      Altra foto live qui
+    </div>
+
+  </div>
+
+  <br>
+
+  <button class="upload-btn">
+    Carica Foto Live 📸
+  </button>
+
+</div>
+
+<div class="section-title">
+🎉 Eventi Speciali
+</div>
+
+<div class="card">
+  <div class="info">
+    Giovedì: Pre Weekend<br><br>
+    Venerdì: Main Night 👑<br><br>
+    Sabato: After Party 🔥
+  </div>
+</div>
+
+</div>
+
+<div class="bottom-nav">
+<a href="index.html">Home</a>
+<a href="locali.html" class="active">Locali</a>
+<a href="spot.html">Spots</a>
+<a href="community.html">Community</a>
+<a href="eventi.html">Eventi</a>
+<a href="profilo.html">Profilo</a>
+</div>
+
+</body>
+</html>
