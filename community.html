@@ -873,6 +873,8 @@ input.value = "";
 
 loadComments();
 loadTopUsers();
+  
+};
 
 async function loadTopUsers() {
   const snapshot = await getDocs(collection(db, "comments"));
