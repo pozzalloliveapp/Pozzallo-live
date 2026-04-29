@@ -910,7 +910,20 @@ async function loadNotifications() {
     box.innerHTML = "Nessuna notifica live al momento 👀";
   }
 }
+  
+window.deleteComment = async function(commentId) {
+  const confirmDelete = confirm("Vuoi davvero eliminare questo commento?");
 
+  if (!confirmDelete) return;
+
+  await deleteDoc(doc(db, "comments", commentId));
+
+  loadComments();
+  loadTopUsers();
+
+  alert("Commento eliminato 🗑️");
+};
+  
 checkAdmin();
   
 loadHype();
