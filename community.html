@@ -637,13 +637,20 @@ async function loadComments() {
     const photo = data.photo || "";
     const email = data.email || "";
 
-    let badge = "";
+let badge = "";
 
-    if (email === "giovanniagosta7@gmail.com") {
-      badge = " 🛡️ FOUNDER";
-    } else if (username.toLowerCase().includes("vip")) {
-      badge = " 👑 VIP";
-    }
+if (email === "giovanniagosta7@gmail.com") {
+  badge = " 🛡️ FOUNDER";
+}
+else if ((data.commentCount || 0) >= 20) {
+  badge = " 👑 VIP";
+}
+else if ((data.commentCount || 0) >= 10) {
+  badge = " 🔥 ACTIVE";
+}
+else if ((data.commentCount || 0) <= 2) {
+  badge = " 🚀 NEW ENTRY";
+}
 
     const avatar = photo
       ? `<img src="${photo}" style="
