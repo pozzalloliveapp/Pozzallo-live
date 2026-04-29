@@ -698,13 +698,16 @@ else if ((data.commentCount || 0) <= 2) {
       ">
         ${avatar}
 
-        <div style="flex:1;">
-          <div style="
-            font-weight:700;
-            margin-bottom:6px;
-          ">
-            ${username}${badge}
-          </div>
+      <div
+        onclick="openProfile('${username}', '${badge}', '${photo}', '${data.commentCount || 1}')"
+        style="
+        font-weight:700;
+        margin-bottom:6px;
+        cursor:pointer;
+       "
+        >
+         ${username}${badge}
+         </div>
 
           <div style="
             line-height:1.6;
