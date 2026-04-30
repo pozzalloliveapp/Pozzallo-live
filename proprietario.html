@@ -6,75 +6,50 @@
 <title>Area Proprietario - Pozzallo Live</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
-  background: #050816;
-  color: white;
+  background:#050816;
+  color:white;
+  font-family:Arial;
 }
 
 .page {
-  max-width: 500px;
-  margin: auto;
-  padding: 30px 20px 100px;
+  max-width:500px;
+  margin:auto;
+  padding:30px 20px;
 }
 
 .title {
-  font-size: 38px;
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-
-.title span {
-  color: #7c3aed;
-}
-
-.subtitle {
-  opacity: 0.9;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  font-size:32px;
+  font-weight:900;
+  margin-bottom:20px;
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 22px;
-  padding: 22px;
-  margin-bottom: 20px;
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:20px;
 }
 
 input, textarea {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.06);
-  color: white;
-  margin-bottom: 14px;
-  outline: none;
-  font-size: 14px;
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:none;
+  margin-bottom:10px;
+  background:rgba(255,255,255,0.08);
+  color:white;
 }
 
 button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 16px;
-  background: linear-gradient(90deg,#7c3aed,#3b82f6);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 16px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(90deg,#7c3aed,#3b82f6);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -82,80 +57,34 @@ button {
 <body>
 
 <div class="page">
+
 <a href="javascript:history.back()" style="
-  display:inline-block;
-  margin-bottom:20px;
-  text-decoration:none;
-  color:white;
-  font-size:16px;
-  font-weight:700;
-  opacity:0.9;
+display:inline-block;
+margin-bottom:20px;
+color:white;
+text-decoration:none;
+font-weight:700;
 ">
 ← Indietro
 </a>
-  
+
 <div class="title">
-AREA <span>PROPRIETARIO</span>
-</div>
-
-<div class="subtitle">
-Gestisci il tuo locale live su Pozzallo Live.
-Aggiorna eventi, foto e comunicazioni.
+🛡️ Area Proprietario
 </div>
 
 <div class="card">
-
-<div class="section-title">
-🎉 Aggiorna Evento Live
-</div>
-
-<input
-type="text"
-placeholder="Es: Sabato White Party con DJ Set"
->
-
-<textarea
-rows="4"
-placeholder="Descrizione evento..."
-></textarea>
-
-<button>
-Salva Evento Live
-</button>
-
+<input placeholder="Nome locale">
+<textarea placeholder="Descrizione evento di oggi"></textarea>
+<button>Salva Evento</button>
 </div>
 
 <div class="card">
-
-<div class="section-title">
-📸 Carica Foto Locale
-</div>
-
-<input
-type="file"
->
-
-<button>
-Carica Foto
-</button>
-
+<input placeholder="Link immagine">
+<button>Aggiungi Foto</button>
 </div>
 
 <div class="card">
-
-<div class="section-title">
-📢 Notifica ai Clienti
-</div>
-
-<input
-type="text"
-placeholder="Es: Tavoli quasi terminati 🔥"
->
-
-<button>
-Invia Notifica
-</button>
-
+<button>Pubblica Notifica Locale 📢</button>
 </div>
 
 </div>
