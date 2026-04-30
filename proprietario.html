@@ -75,7 +75,7 @@ font-weight:700;
 <div class="card">
 <input placeholder="Nome locale">
 <textarea placeholder="Descrizione evento di oggi"></textarea>
-<button>Salva Evento</button>
+<button onclick="saveEvent()">Salva Evento</button>
 </div>
 
 <div class="card">
@@ -88,6 +88,35 @@ font-weight:700;
 </div>
 
 </div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "pozzallolive2026.firebaseapp.com",
+  projectId: "pozzallolive2026",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.saveEvent = async function() {
+  const title = document.querySelectorAll("input")[0].value;
+  const desc = document.querySelectorAll("textarea")[0].value;
+
+  await setDoc(doc(db, "locali", "millesimo"), {
+    eventTitle: title,
+    eventDesc: desc
+  });
+
+  alert("Evento aggiornato 🔥");
+};
+</script>
+  
 </body>
 </html>
