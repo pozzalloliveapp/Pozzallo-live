@@ -104,6 +104,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const params = new URLSearchParams(window.location.search);
+const localeId = params.get("locale");
+
+console.log("Locale corrente:", localeId);
+  
 
 window.saveEvent = async function() {
   const title = document.querySelectorAll("input")[0].value;
