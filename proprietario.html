@@ -114,7 +114,7 @@ window.saveEvent = async function() {
   const title = document.querySelectorAll("input")[0].value;
   const desc = document.querySelectorAll("textarea")[0].value;
 
-  await setDoc(doc(db, "locali", "millesimo"), {
+  await setDoc(doc(db, "locali", localeId), {
     eventTitle: title,
     eventDesc: desc
   });
