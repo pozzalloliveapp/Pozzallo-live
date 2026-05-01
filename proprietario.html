@@ -3,172 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proprietario - Gestisci Evento</title>
+    <title>Proprietario - Pozzallo Live</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title {
+            color: white;
+        }
+
+        .header-title h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            gap: 8px;
         }
-        
-        .container {
+
+        .btn-primary {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
+            color: var(--primary);
         }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
-        .locale-info {
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            border-radius: 4px;
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
             margin-bottom: 30px;
-            text-align: center;
         }
-        
-        .locale-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #667eea;
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .locale-label {
-            font-size: 12px;
-            color: #999;
-            margin-top: 5px;
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
-        
+
+        .card h2 {
+            font-size: 22px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
+            color: var(--dark);
             font-size: 14px;
         }
-        
+
         input, textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-family: inherit;
+            padding: 12px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
             font-size: 14px;
-            transition: border-color 0.3s;
+            font-family: inherit;
+            transition: var(--transition);
         }
-        
+
         input:focus, textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        
+
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
-        
-        button {
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 12px 14px;
+            background: var(--light);
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .file-input-label:hover {
+            background: #f0f4ff;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .file-name {
+            font-size: 12px;
+            color: var(--success);
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .btn-save {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+            padding: 13px;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: var(--transition);
         }
-        
-        button:hover {
+
+        .btn-save:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
-        
-        button:active {
-            transform: translateY(0);
-        }
-        
-        button:disabled {
+
+        .btn-save:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-        
-        .button-text {
-            display: inline-block;
-            transition: opacity 0.3s;
-        }
-        
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .success {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            color: #155724;
-            padding: 15px;
-            border-radius: 4px;
+
+        .alert {
+            padding: 14px 16px;
+            border-radius: 12px;
             margin-bottom: 20px;
             display: none;
+            animation: slideDown 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
         }
-        
-        .success.show {
+
+        .alert.show {
             display: block;
-            animation: slideIn 0.3s ease;
         }
-        
-        .error {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: none;
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border-left: 4px solid #dc2626;
         }
-        
-        .error.show {
-            display: block;
-            animation: slideIn 0.3s ease;
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border-left: 4px solid #059669;
         }
-        
-        @keyframes slideIn {
+
+        @keyframes slideDown {
             from {
                 opacity: 0;
                 transform: translateY(-10px);
@@ -178,157 +256,349 @@
                 transform: translateY(0);
             }
         }
-        
-        .error-locale {
-            background: #f8d7da;
-            border: 2px solid #dc3545;
-            color: #721c24;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
+
+        .events-list, .photos-list {
+            margin-top: 20px;
         }
-        
-        .error-locale-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+
+        .event-item, .photo-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .event-item strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .event-item small {
+            color: #6b7280;
+            display: block;
+        }
+
+        .photo-item {
+            align-items: center;
+        }
+
+        .photo-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-delete:hover {
+            opacity: 0.8;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #9ca3af;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎪 Gestisci Evento</h1>
+        <header>
+            <div class="header-title">
+                <h1>🎪 Area Proprietario</h1>
+                <p id="localeInfo">Locale: -</p>
+            </div>
+            <div class="header-actions">
+                <a href="locale.html" id="viewLink" class="btn btn-primary">👁️ Visualizza</a>
+                <button id="logoutBtn" class="btn btn-secondary">🚪 Logout</button>
+            </div>
+        </header>
 
-        <div id="successMessage" class="success">
-            ✅ <strong>Evento salvato!</strong> I clienti potranno vederlo subito.
-        </div>
+        <div id="errorAlert" class="alert alert-error"></div>
+        <div id="successAlert" class="alert alert-success"></div>
 
-        <div id="errorMessage" class="error"></div>
+        <div class="content">
+            <!-- AGGIUNGI EVENTO -->
+            <div class="card">
+                <h2>📅 Aggiungi Evento</h2>
+                
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Titolo Evento</label>
+                        <input type="text" id="eventTitle" placeholder="Es: Serata Latino Americano" required>
+                    </div>
 
-        <div id="localeError" style="display: none;">
-            <div class="error-locale">
-                <div class="error-locale-icon">⚠️</div>
-                <p><strong>Errore</strong></p>
-                <p style="font-size: 14px; margin-top: 10px;">Parametro URL "locale" non trovato</p>
-                <p style="font-size: 12px; margin-top: 10px; color: #999;">Accedi come: <code>proprietario.html?locale=millesimo</code></p>
+                    <div class="form-group">
+                        <label for="eventDesc">Descrizione</label>
+                        <textarea id="eventDesc" placeholder="Descrivi l'evento..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-save">💾 Aggiungi Evento</button>
+                </form>
+
+                <div class="events-list">
+                    <h3 style="font-size: 14px; color: var(--dark); margin-bottom: 12px;">📋 Eventi Attuali</h3>
+                    <div id="eventsList" class="empty-state">Caricamento...</div>
+                </div>
+            </div>
+
+            <!-- CARICA FOTO -->
+            <div class="card">
+                <h2>📸 Carica Foto</h2>
+                
+                <form id="photoForm">
+                    <div class="form-group">
+                        <label>Seleziona Foto</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="photoFile" accept="image/*" required>
+                            <label for="photoFile" class="file-input-label">
+                                📁 Clicca per selezionare una foto
+                            </label>
+                            <div id="fileName" class="file-name"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-save">🚀 Carica Foto</button>
+                </form>
+
+                <div class="photos-list">
+                    <h3 style="font-size: 14px; color: var(--dark); margin-bottom: 12px;">🖼️ Foto Caricate</h3>
+                    <div id="photosList" class="empty-state">Caricamento...</div>
+                </div>
             </div>
         </div>
-
-        <form id="eventForm" style="display: none;">
-            <div class="locale-info">
-                <div class="locale-label">📍 Locale</div>
-                <div class="locale-name" id="localeDisplay"></div>
-            </div>
-
-            <div class="form-group">
-                <label for="eventTitle">Titolo Evento</label>
-                <input type="text" id="eventTitle" placeholder="Es: Serata Latino Americano" required>
-            </div>
-
-            <div class="form-group">
-                <label for="eventDesc">Descrizione Evento</label>
-                <textarea id="eventDesc" placeholder="Es: Musica dal vivo, drink speciali, dj alle 22:00..." required></textarea>
-            </div>
-
-            <button type="submit" id="saveBtn">
-                <span class="button-text">💾 Salva Evento</span>
-            </button>
-        </form>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { db, auth, storage } from "./firebase.js";
+        import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { doc, getDoc, updateDoc, arrayUnion, Timestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
-        // Configurazione Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyDqVl3-5vB0_-K6X8mL9nOpQrStZ5zF_Jg",
-            authDomain: "pozzallolive-app.firebaseapp.com",
-            projectId: "pozzallolive-app",
-            storageBucket: "pozzallolive-app.appspot.com",
-            messagingSenderId: "825971923234",
-            appId: "1:825971923234:web:1a5f6c6a3f7e9c2d1f3a5b"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Elementi DOM
-        const eventForm = document.getElementById('eventForm');
-        const localeError = document.getElementById('localeError');
-        const localeDisplay = document.getElementById('localeDisplay');
-        const eventTitleInput = document.getElementById('eventTitle');
-        const eventDescInput = document.getElementById('eventDesc');
-        const saveBtn = document.getElementById('saveBtn');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-
-        // Leggi il parametro URL
         const params = new URLSearchParams(window.location.search);
-        const localeId = params.get('locale');
+        const localeId = params.get("locale");
 
         if (!localeId) {
-            // Mostra errore se manca il parametro
-            localeError.style.display = 'block';
-        } else {
-            // Mostra il form con il nome del locale
-            eventForm.style.display = 'block';
-            localeDisplay.textContent = localeId.toUpperCase();
+            alert('Parametro locale mancante');
+            window.location.href = 'login.html';
+        }
 
-            // Salva l'evento
-            eventForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
+        // Elements
+        const localeInfo = document.getElementById('localeInfo');
+        const viewLink = document.getElementById('viewLink');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const eventForm = document.getElementById('eventForm');
+        const photoForm = document.getElementById('photoForm');
+        const photoFile = document.getElementById('photoFile');
+        const fileName = document.getElementById('fileName');
+        const eventsList = document.getElementById('eventsList');
+        const photosList = document.getElementById('photosList');
+        const errorAlert = document.getElementById('errorAlert');
+        const successAlert = document.getElementById('successAlert');
 
-                const eventTitle = eventTitleInput.value.trim();
-                const eventDesc = eventDescInput.value.trim();
+        // Firestore reference
+        const localeRef = doc(db, 'locali', localeId);
 
-                if (!eventTitle || !eventDesc) {
-                    showError('Compila tutti i campi');
+        // Check auth
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Update links
+        localeInfo.textContent = `Locale: ${localeId.toUpperCase()}`;
+        viewLink.href = `locale.html?locale=${localeId}`;
+
+        // Logout
+        logoutBtn.addEventListener('click', async () => {
+            await signOut(auth);
+            window.location.href = 'login.html';
+        });
+
+        // Add event
+        eventForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('eventTitle').value.trim();
+            const desc = document.getElementById('eventDesc').value.trim();
+            const btn = eventForm.querySelector('.btn-save');
+
+            if (!title || !desc) {
+                showError('Compila tutti i campi');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Salvataggio...';
+
+            try {
+                await updateDoc(localeRef, {
+                    eventi: arrayUnion({
+                        title: title,
+                        desc: desc,
+                        createdAt: Timestamp.now()
+                    })
+                });
+                showSuccess('✅ Evento aggiunto!');
+                eventForm.reset();
+                loadEvents();
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '💾 Aggiungi Evento';
+            }
+        });
+
+        // Photo file name
+        photoFile.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileName.textContent = `✅ ${file.name}`;
+            }
+        });
+
+        // Upload photo
+        photoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = photoFile.files[0];
+            if (!file) {
+                showError('Seleziona una foto');
+                return;
+            }
+
+            const btn = photoForm.querySelector('.btn-save');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Upload...';
+
+            try {
+                const timestamp = Date.now();
+                const storageRef = ref(storage, `locali/${localeId}/${timestamp}_${file.name}`);
+                await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(storageRef);
+
+                await updateDoc(localeRef, {
+                    foto: arrayUnion({
+                        url: url,
+                        createdAt: Timestamp.now()
+                    })
+                });
+
+                showSuccess('✅ Foto caricata!');
+                photoForm.reset();
+                fileName.textContent = '';
+                loadPhotos();
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '🚀 Carica Foto';
+            }
+        });
+
+        // Load events
+        async function loadEvents() {
+            try {
+                const snap = await getDoc(localeRef);
+                if (!snap.exists() || !snap.data().eventi || snap.data().eventi.length === 0) {
+                    eventsList.innerHTML = '<div class="empty-state">Nessun evento</div>';
                     return;
                 }
+                const eventi = snap.data().eventi;
+                eventsList.innerHTML = eventi.map((e, i) => `
+                    <div class="event-item">
+                        <div>
+                            <strong>${escapeHtml(e.title)}</strong>
+                            <small>${escapeHtml(e.desc)}</small>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                eventsList.innerHTML = '<div class="empty-state">Errore nel caricamento</div>';
+            }
+        }
 
-                saveBtn.disabled = true;
-                saveBtn.innerHTML = '<span class="spinner"></span><span class="button-text">Salvataggio...</span>';
-
-                try {
-                    const docRef = doc(db, 'locali', localeId);
-                    await setDoc(docRef, {
-                        eventTitle: eventTitle,
-                        eventDesc: eventDesc,
-                        savedAt: new Date().toISOString(),
-                        savedBy: 'proprietario'
-                    });
-
-                    // Mostra successo
-                    showSuccess();
-                    eventForm.reset();
-
-                    // Nascondi dopo 3 secondi
-                    setTimeout(() => {
-                        successMessage.classList.remove('show');
-                    }, 3000);
-
-                } catch (error) {
-                    console.error('Errore Firebase:', error);
-                    showError('Errore nel salvataggio: ' + error.message);
-                } finally {
-                    saveBtn.disabled = false;
-                    saveBtn.innerHTML = '<span class="button-text">💾 Salva Evento</span>';
+        // Load photos
+        async function loadPhotos() {
+            try {
+                const snap = await getDoc(localeRef);
+                if (!snap.exists() || !snap.data().foto || snap.data().foto.length === 0) {
+                    photosList.innerHTML = '<div class="empty-state">Nessuna foto</div>';
+                    return;
                 }
-            });
+                const foto = snap.data().foto;
+                photosList.innerHTML = foto.map(f => `
+                    <div class="photo-item">
+                        <img src="${f.url}" alt="Foto">
+                        <div style="flex: 1; margin-left: 10px;">
+                            <small style="color: #6b7280; display: block;">📷 Foto caricata</small>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                photosList.innerHTML = '<div class="empty-state">Errore nel caricamento</div>';
+            }
         }
 
-        // Mostra successo
-        function showSuccess() {
-            successMessage.classList.add('show');
-            errorMessage.classList.remove('show');
-        }
-
-        // Mostra errore
         function showError(msg) {
-            errorMessage.textContent = '❌ ' + msg;
-            errorMessage.classList.add('show');
-            successMessage.classList.remove('show');
+            errorAlert.textContent = '❌ ' + msg;
+            errorAlert.classList.add('show');
+            successAlert.classList.remove('show');
+            setTimeout(() => errorAlert.classList.remove('show'), 5000);
         }
+
+        function showSuccess(msg) {
+            successAlert.textContent = msg;
+            successAlert.classList.add('show');
+            errorAlert.classList.remove('show');
+            setTimeout(() => successAlert.classList.remove('show'), 3000);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load initial data
+        loadEvents();
+        loadPhotos();
+
+        // Refresh every 3 seconds
+        setInterval(() => {
+            loadEvents();
+            loadPhotos();
+        }, 3000);
     </script>
 </body>
 </html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locale - Pozzallo Live</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+        }
+
+        .event-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .event-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.95;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .event-date {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .listing {
+            margin-top: 10px;
+        }
+
+        .listing-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .listing-item h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .listing-item p {
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .listing-date {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="localeName">🎪 Locale</h1>
+            <p id="localeSubtitle">Scopri gli eventi e le foto</p>
+            <a href="login.html" class="btn btn-primary">🔐 Area Proprietario</a>
+        </header>
+
+        <!-- EVENTO LIVE -->
+        <section>
+            <div class="section-title">📅 Evento Live Adesso</div>
+            <div id="eventLiveContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">Caricamento evento...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTI PASSATI -->
+        <section>
+            <div class="section-title">📋 Ultimi Eventi</div>
+            <div id="eventsListContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">Caricamento eventi...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERIA FOTO -->
+        <section>
+            <div class="section-title">🖼️ Galleria Foto</div>
+            <div id="galleryContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px;">Caricamento galleria...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { db } from "./firebase.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const params = new URLSearchParams(window.location.search);
+        const localeId = params.get("locale");
+
+        if (!localeId) {
+            document.body.innerHTML = '<div style="text-align: center; padding: 50px; color: white;"><p>Locale non trovato</p></div>';
+        }
+
+        const localeName = document.getElementById('localeName');
+        const localeSubtitle = document.getElementById('localeSubtitle');
+        const eventLiveContainer = document.getElementById('eventLiveContainer');
+        const eventsListContainer = document.getElementById('eventsListContainer');
+        const galleryContainer = document.getElementById('galleryContainer');
+
+        // Update header
+        localeName.textContent = `🎪 ${localeId.charAt(0).toUpperCase() + localeId.slice(1)}`;
+
+        // Load data
+        async function loadData() {
+            try {
+                const docRef = doc(db, 'locali', localeId);
+                const snap = await getDoc(docRef);
+
+                if (!snap.exists()) {
+                    eventLiveContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Nessun evento disponibile</p></div>';
+                    eventsListContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Nessun evento disponibile</p></div>';
+                    galleryContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Nessuna foto disponibile</p></div>';
+                    return;
+                }
+
+                const data = snap.data();
+
+                // Load live event
+                loadLiveEvent(data.eventi);
+
+                // Load events list
+                loadEventsList(data.eventi);
+
+                // Load gallery
+                loadGallery(data.foto);
+            } catch (error) {
+                console.error('Errore:', error);
+                eventLiveContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Errore nel caricamento</p></div>';
+            }
+        }
+
+        function loadLiveEvent(eventi) {
+            if (!eventi || eventi.length === 0) {
+                eventLiveContainer.innerHTML = '<div class="card empty-state"><div class="empty-state-icon">📭</div><p>Nessun evento programmato</p></div>';
+                return;
+            }
+
+            const latestEvent = eventi[eventi.length - 1];
+            const date = latestEvent.createdAt?.toDate ? latestEvent.createdAt.toDate() : new Date(latestEvent.createdAt);
+            const dateStr = date.toLocaleString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            eventLiveContainer.innerHTML = `
+                <div class="event-card">
+                    <h3>🎉 ${escapeHtml(latestEvent.title)}</h3>
+                    <p>${escapeHtml(latestEvent.desc)}</p>
+                    <div class="event-date">📌 ${dateStr}</div>
+                </div>
+            `;
+        }
+
+        function loadEventsList(eventi) {
+            if (!eventi || eventi.length === 0) {
+                eventsListContainer.innerHTML = '<div class="card empty-state"><div class="empty-state-icon">📭</div><p>Nessun evento disponibile</p></div>';
+                return;
+            }
+
+            const sortedEvents = [...eventi].reverse();
+            eventsListContainer.innerHTML = `
+                <div class="card">
+                    <div class="listing">
+                        ${sortedEvents.map(e => {
+                            const date = e.createdAt?.toDate ? e.createdAt.toDate() : new Date(e.createdAt);
+                            const dateStr = date.toLocaleString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                            return `
+                                <div class="listing-item">
+                                    <h4>${escapeHtml(e.title)}</h4>
+                                    <p>${escapeHtml(e.desc)}</p>
+                                    <div class="listing-date">📅 ${dateStr}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadGallery(foto) {
+            if (!foto || foto.length === 0) {
+                galleryContainer.innerHTML = '<div class="card empty-state"><div class="empty-state-icon">📭</div><p>Nessuna foto disponibile</p></div>';
+                return;
+            }
+
+            const sortedPhotos = [...foto].reverse();
+            galleryContainer.innerHTML = `
+                <div class="card">
+                    <div class="photo-grid">
+                        ${sortedPhotos.map(p => `
+                            <div class="photo-item" onclick="window.open('${p.url}')">
+                                <img src="${p.url}" alt="Foto locale" loading="lazy">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load on page load
+        loadData();
+
+        // Refresh every 5 seconds
+        setInterval(loadData, 5000);
+    </script>
+</body>
+</html>

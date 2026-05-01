@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pozzallo Live</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .logo p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            grid-column: 1 / -1;
+        }
+
+        .btn-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-guest {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-guest:hover:not(:disabled) {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .button-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border-left: 4px solid #dc2626;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border-left: 4px solid #059669;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            gap: 12px;
+            color: #d1d5db;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <div class="logo-icon">🎪</div>
+            <h1>Pozzallo Live</h1>
+            <p>Gestisci i tuoi eventi</p>
+        </div>
+
+        <div id="errorAlert" class="alert alert-error"></div>
+        <div id="successAlert" class="alert alert-success"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="proprietario@locale.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span class="button-text">
+                        <span>🔐 Accedi</span>
+                        <span class="spinner" style="display: none;"></span>
+                    </span>
+                </button>
+                <button type="button" class="btn-guest" id="guestBtn">
+                    👁️ Demo
+                </button>
+            </div>
+        </form>
+
+        <div class="divider">oppure</div>
+
+        <p style="text-align: center; color: #6b7280; font-size: 13px;">
+            Demo: locale=millesimo per visualizzare
+        </p>
+    </div>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const guestBtn = document.getElementById('guestBtn');
+        const errorAlert = document.getElementById('errorAlert');
+        const successAlert = document.getElementById('successAlert');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        // Login
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginBtn.disabled = true;
+            const spinner = loginBtn.querySelector('.spinner');
+            spinner.style.display = 'inline-block';
+
+            try {
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                showSuccess('✅ Login riuscito! Reindirizzamento...');
+                setTimeout(() => {
+                    window.location.href = 'proprietario.html?locale=millesimo';
+                }, 1500);
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                loginBtn.disabled = false;
+                spinner.style.display = 'none';
+            }
+        });
+
+        // Guest mode
+        guestBtn.addEventListener('click', () => {
+            window.location.href = 'locale.html?locale=millesimo';
+        });
+
+        function showError(msg) {
+            errorAlert.textContent = '❌ ' + msg;
+            errorAlert.classList.add('show');
+            successAlert.classList.remove('show');
+            setTimeout(() => {
+                errorAlert.classList.remove('show');
+            }, 5000);
+        }
+
+        function showSuccess(msg) {
+            successAlert.textContent = msg;
+            successAlert.classList.add('show');
+            errorAlert.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
