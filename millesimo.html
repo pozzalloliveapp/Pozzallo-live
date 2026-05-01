@@ -1,343 +1,267 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Millesimo • Pozzallo Live</title>
-
-<link rel="icon" type="image/png" href="Logo_1.png">
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background: #050816;
-  color: white;
-}
-
-.page {
-  max-width: 500px;
-  margin: auto;
-  padding: 30px 20px 120px;
-}
-
-.hero {
-  background: rgba(255,255,255,0.04);
-  border-radius: 26px;
-  padding: 24px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.place-title {
-  font-size: 38px;
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-
-.place-subtitle {
-  font-size: 15px;
-  opacity: 0.9;
-  line-height: 1.7;
-}
-
-.live-status {
-  margin-top: 18px;
-  display: inline-block;
-  padding: 12px 18px;
-  border-radius: 16px;
-  background: rgba(59,130,246,0.15);
-  border: 1px solid rgba(59,130,246,0.25);
-  font-weight: bold;
-}
-
-.section-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 28px 0 18px;
-}
-
-.card {
-  background: rgba(255,255,255,0.04);
-  border-radius: 22px;
-  padding: 22px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.info {
-  line-height: 1.8;
-  font-size: 15px;
-}
-
-.gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.photo {
-  height: 220px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  opacity: 0.8;
-}
-
-.upload-btn {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 16px;
-  background: linear-gradient(90deg, #7c3aed, #3b82f6);
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(5,8,22,0.96);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  justify-content: space-around;
-  padding: 18px 0;
-}
-
-.bottom-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.bottom-nav a.active {
-  color: #3b82f6;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millesimo - Locale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        #eventBox {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .event-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .event-empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .event-content {
+            animation: slideIn 0.3s ease;
+        }
+        
+        .event-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .event-title::before {
+            content: '📅';
+            font-size: 28px;
+        }
+        
+        .event-desc {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .event-timestamp {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <header>
+            <h1>🍕 Millesimo</h1>
+            <p class="subtitle">Scopri gli eventi del nostro locale</p>
+        </header>
 
-<div class="page">
-<a href="javascript:history.back()" style="
-  display:inline-block;
-  margin-bottom:20px;
-  text-decoration:none;
-  color:white;
-  font-size:16px;
-  font-weight:700;
-  opacity:0.9;
-">
-← Indietro
-</a>
-  
-<div class="hero">
-  <div class="place-title">
-    Millesimo 👑
-  </div>
+        <div id="eventBox" class="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; color: #667eea;">Caricamento evento...</p>
+        </div>
 
-  <div class="place-subtitle">
-    Il cuore del venerdì sera.
-    Se Pozzallo si muove, qui succede qualcosa.
-  </div>
-
-  <div class="live-status">
-    🔥 LIVE NOW — Molto Vivo
-  </div>
-  <div style="
-  margin-top:18px;
-  padding:14px;
-  border-radius:18px;
-  background: rgba(124,58,237,0.15);
-  border: 1px solid rgba(124,58,237,0.30);
-  font-weight:bold;
-  text-align:center;
-">
-  🛡️ Locale Verificato su Pozzallo Live
-  </div>
-    <div style="
-  margin-top:22px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:22px;
-">
-
-  <div style="
-    font-size:18px;
-    font-weight:800;
-    margin-bottom:12px;
-  ">
-    🎉 Evento Live di Oggi
-  </div>
-
-  <div style="
-    font-size:16px;
-    line-height:1.7;
-  ">
-    Venerdì Night Party con DJ Set 🎧<br><br>
-    Start ore 23:00 — Tavoli pieni già da presto 🔥
-  </div>
-
-    </div>
-    
-  </div>
-</div>
-<div class="section-title">
-📸 Galleria Live
-</div>
-
-<div id="galleryBox" style="
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  margin-bottom:30px;
-">
-  <div style="
-    padding:20px;
-    border-radius:16px;
-    background:rgba(255,255,255,0.04);
-    text-align:center;
-    font-size:14px;
-    opacity:0.8;
-  ">
-    Nessuna foto live caricata oggi 📷
-  </div>
-</div>
-  <button style="
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:16px;
-  background: linear-gradient(90deg,#22c55e,#16a34a);
-  color:white;
-  font-weight:700;
-  cursor:pointer;
-  margin-bottom:30px;
-">
-📸 Carica Foto Live
-  </button>
-  
-<div style="
-  margin-bottom:30px;
-  background: rgba(124,58,237,0.08);
-  border: 1px solid rgba(124,58,237,0.20);
-  border-radius:20px;
-  padding:22px;
-">
-
-  <div style="
-    font-size:18px;
-    font-weight:800;
-    margin-bottom:14px;
-  ">
-    🛡️ Area Gestione Locale
-  </div>
-
-  <div style="
-    font-size:15px;
-    line-height:1.7;
-    margin-bottom:18px;
-  ">
-    Solo il proprietario verificato può aggiornare foto, eventi e serate live.
-  </div>
-
-  <a href="proprietario.html?locale=millesimo"> style="
-  text-decoration:none;
-">
-
-<button style="
-
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:16px;
-    background: linear-gradient(90deg,#7c3aed,#3b82f6);
-    color:white;
-    font-weight:700;
-    cursor:pointer;
-  ">
-    Accedi come Proprietario
-  </button>
-  </a>
-  
-</div>
-  
-<div class="section-title">
-📍 Info Locale
-</div>
-
-<div class="card">
-  <div class="info">
-    📍 Centro Pozzallo<br>
-    🕘 Orario top: 23:00 – 02:00<br>
-    🎧 Weekend Main Spot<br>
-    🍸 Cocktail • Tavoli • Musica Live
-  </div>
-</div>
-
-<div class="section-title">
-📸 Foto Live della Notte
-</div>
-
-<div class="card">
-
-  <div class="gallery">
-
-    <div class="photo">
-      Foto live del locale qui
+        <footer>
+            <p>Powered by Pozzallo Live App © 2026</p>
+        </footer>
     </div>
 
-    <div class="photo">
-      Altra foto live qui
-    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-  </div>
+        // Configurazione Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqVl3-5vB0_-K6X8mL9nOpQrStZ5zF_Jg",
+            authDomain: "pozzallolive-app.firebaseapp.com",
+            projectId: "pozzallolive-app",
+            storageBucket: "pozzallolive-app.appspot.com",
+            messagingSenderId: "825971923234",
+            appId: "1:825971923234:web:1a5f6c6a3f7e9c2d1f3a5b"
+        };
 
-  <br>
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-  <button class="upload-btn">
-    Carica Foto Live 📸
-  </button>
+        // Elemento DOM
+        const eventBox = document.getElementById('eventBox');
+        const localeName = 'millesimo'; // Nome fisso per questo locale
 
-</div>
+        // Leggi l'evento da Firestore
+        async function loadEvent() {
+            try {
+                const docRef = doc(db, 'locali', localeName);
+                const docSnap = await getDoc(docRef);
 
-<div class="section-title">
-🎉 Eventi Speciali
-</div>
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    displayEvent(data);
+                } else {
+                    displayNoEvent();
+                }
+            } catch (error) {
+                console.error('Errore Firebase:', error);
+                eventBox.innerHTML = `
+                    <div class="event-empty">
+                        <div class="event-empty-icon">⚠️</div>
+                        <p>Errore nel caricamento dell'evento</p>
+                        <p style="font-size: 12px; margin-top: 10px; color: #ccc;">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
 
-<div class="card">
-  <div class="info">
-    Giovedì: Pre Weekend<br><br>
-    Venerdì: Main Night 👑<br><br>
-    Sabato: After Party 🔥
-  </div>
-</div>
+        // Mostra l'evento
+        function displayEvent(data) {
+            const title = escapeHtml(data.eventTitle || 'Evento');
+            const desc = escapeHtml(data.eventDesc || 'Nessuna descrizione');
+            const timestamp = data.savedAt ? formatDate(data.savedAt) : '';
 
-</div>
+            let html = `
+                <div class="event-content">
+                    <div class="event-title">${title}</div>
+                    <div class="event-desc">${desc}</div>
+            `;
 
-<div class="bottom-nav">
-<a href="index.html">Home</a>
-<a href="locali.html" class="active">Locali</a>
-<a href="spot.html">Spots</a>
-<a href="community.html">Community</a>
-<a href="eventi.html">Eventi</a>
-<a href="profilo.html">Profilo</a>
-</div>
+            if (timestamp) {
+                html += `<div class="event-timestamp">📌 Aggiornato: ${timestamp}</div>`;
+            }
 
+            html += '</div>';
+            eventBox.innerHTML = html;
+        }
+
+        // Mostra nessun evento
+        function displayNoEvent() {
+            eventBox.innerHTML = `
+                <div class="event-empty">
+                    <div class="event-empty-icon">📭</div>
+                    <p><strong>Nessun evento</strong></p>
+                    <p style="font-size: 14px; margin-top: 10px; color: #999;">Al momento non ci sono eventi programmati</p>
+                </div>
+            `;
+        }
+
+        // Formatta la data
+        function formatDate(isoString) {
+            try {
+                const date = new Date(isoString);
+                return date.toLocaleString('it-IT', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch {
+                return '';
+            }
+        }
+
+        // Escape HTML per sicurezza
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Carica l'evento al caricamento della pagina
+        loadEvent();
+    </script>
 </body>
 </html>
